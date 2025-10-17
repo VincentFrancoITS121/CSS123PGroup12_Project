@@ -20,6 +20,7 @@ public class Manhwa {
     private double price;
     private boolean hasDiscount;
     private String couponCode;
+    private String purchaseUrl;
     
     public Manhwa(String title, String author, String genre, String demographic, 
                   String ageRating, double rating, String description) {
@@ -32,6 +33,7 @@ public class Manhwa {
         this.description = description;
         this.price = 0.0;
         this.hasDiscount = false;
+        this.purchaseUrl = "";
     }
     
     // Getters
@@ -46,6 +48,7 @@ public class Manhwa {
     public double getPrice() { return price; }
     public boolean hasDiscount() { return hasDiscount; }
     public String getCouponCode() { return couponCode; }
+    public String getPurchaseUrl() { return purchaseUrl; }
     
     // Setters
     public void setTitle(String title) { this.title = title; }
@@ -59,6 +62,7 @@ public class Manhwa {
     public void setPrice(double price) { this.price = price; }
     public void setHasDiscount(boolean hasDiscount) { this.hasDiscount = hasDiscount; }
     public void setCouponCode(String couponCode) { this.couponCode = couponCode; }
+    public void setPurchaseUrl(String purchaseUrl) { this.purchaseUrl = purchaseUrl; }
     
     @Override
     public String toString() {

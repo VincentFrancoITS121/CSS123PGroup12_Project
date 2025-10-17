@@ -1,0 +1,216 @@
+package com.mycompany.cssgroup12finalproject;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+public class ShoppingHubPanel extends JPanel {
+    private MainFrame parentFrame;
+    private ManhwaDatabase database;
+    private JPanel shopGrid;
+    
+    // UI Constants (Matching the Dark Theme)
+    private final Color BACKGROUND_DARK = new Color(30, 30, 45);
+    private final Color CARD_BACKGROUND = new Color(55, 55, 75);
+    private final Color ACCENT_PRIMARY = new Color(106, 142, 255);
+    private final Color ACCENT_SECONDARY = new Color(96, 227, 176); // Buy Button Color (Mint Green)
+    private final Color TEXT_LIGHT = new Color(230, 230, 230);
+    private final Color TEXT_SUBTLE = new Color(180, 180, 180);
+    private final Color PRICE_COLOR = new Color(255, 215, 0); // Gold for Price
+    private final Color DISCOUNT_COLOR = new Color(255, 99, 71); // Tomato Red for urgent discount
+
+    // Font definitions for consistency
+    private final Font TITLE_FONT = new Font("SansSerif", Font.BOLD, 28);
+    private final Font CARD_TITLE_FONT = new Font("SansSerif", Font.BOLD, 18);
+    private final Font BUTTON_FONT = new Font("SansSerif", Font.PLAIN, 14);
+    
+    public ShoppingHubPanel(MainFrame parentFrame) {
+        this.parentFrame = parentFrame;
+        this.database = ManhwaDatabase.getInstance();
+        setLayout(new BorderLayout());
+        setBackground(BACKGROUND_DARK);
+        setupUI();
+        loadProducts();
+    }
+    
+    private void setupUI() {
+        // Header Panel
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBackground(BACKGROUND_DARK);
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        
+        JButton backBtn = createHeaderButton("← Back to Home", ACCENT_PRIMARY);
+        backBtn.addActionListener(e -> parentFrame.showPanel("HOME"));
+        headerPanel.add(backBtn, BorderLayout.WEST);
+        
+        JLabel titleLabel = new JLabel("Manhwa Shopping Hub 🛒", SwingConstants.CENTER);
+        titleLabel.setFont(TITLE_FONT);
+        titleLabel.setForeground(TEXT_LIGHT);
+        headerPanel.add(titleLabel, BorderLayout.CENTER);
+        
+        add(headerPanel, BorderLayout.NORTH);
+        
+        // Manhwa Shop Grid
+        shopGrid = new JPanel(new GridLayout(0, 4, 25, 25)); // 4 columns
+        shopGrid.setBackground(BACKGROUND_DARK);
+        shopGrid.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        
+        JScrollPane scrollPane = new JScrollPane(shopGrid);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        scrollPane.getViewport().setBackground(BACKGROUND_DARK);
+        
+        add(scrollPane, BorderLayout.CENTER);
+    }
+    
+    private JButton createHeaderButton(String text, Color foreground) {
+        JButton button = new JButton(text);
+        button.setFont(BUTTON_FONT);
+        button.setBackground(BACKGROUND_DARK);
+        button.setForeground(foreground);
+        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        button.setFocusPainted(false);
+        return button;
+    }
+    
+    private void loadProducts() {
+        shopGrid.removeAll();
+        List<Manhwa> allManhwa = database.getAllManhwa();
+        
+        if (allManhwa.isEmpty()) {
+             shopGrid.setLayout(new GridBagLayout()); 
+             JLabel noProducts = new JLabel("No products available in the shop.");
+             noProducts.setFont(new Font("SansSerif", Font.PLAIN, 24));
+             noProducts.setForeground(TEXT_SUBTLE);
+             shopGrid.add(noProducts);
+        } else {
+             shopGrid.setLayout(new GridLayout(0, 4, 25, 25));
+             for (Manhwa manhwa : allManhwa) {
+                 shopGrid.add(createProductCard(manhwa));
+             }
+        }
+        
+        shopGrid.revalidate();
+        shopGrid.repaint();
+    }
+    
+    private JPanel createProductCard(Manhwa manhwa) {
+        JPanel card = new JPanel(new BorderLayout(5, 5));
+        card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 1));
+        card.setBackground(CARD_BACKGROUND);
+        card.setPreferredSize(new Dimension(250, 400));
+        
+        // Image Placeholder
+        JLabel imageLabel = new JLabel("💰", SwingConstants.CENTER);
+        imageLabel.setFont(new Font("SansSerif", Font.PLAIN, 80));
+        imageLabel.setPreferredSize(new Dimension(230, 180));
+        imageLabel.setOpaque(true);
+        imageLabel.setBackground(new Color(45, 45, 60));
+        imageLabel.setForeground(ACCENT_PRIMARY);
+        card.add(imageLabel, BorderLayout.NORTH);
+        
+        // Info Panel
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+        infoPanel.setBackground(CARD_BACKGROUND);
+        infoPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        
+        JLabel titleLabel = new JLabel(manhwa.getTitle());
+        titleLabel.setFont(CARD_TITLE_FONT);
+        titleLabel.setForeground(TEXT_LIGHT);
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        JLabel authorLabel = new JLabel("by " + manhwa.getAuthor());
+        authorLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        authorLabel.setForeground(TEXT_SUBTLE);
+        authorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        // Price Label Setup
+        JLabel priceLabel = new JLabel(String.format("$%.2f", manhwa.getPrice()));
+        priceLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
+        priceLabel.setForeground(PRICE_COLOR);
+        
+        if (manhwa.hasDiscount()) {
+            priceLabel.setText("SALE: " + priceLabel.getText());
+            priceLabel.setForeground(ACCENT_SECONDARY); // Green for sale
+        }
+        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        // Discount/Coupon Info
+        JLabel discountLabel = new JLabel();
+        if (manhwa.hasDiscount()) {
+            discountLabel.setText("Coupon: " + manhwa.getCouponCode());
+            discountLabel.setForeground(DISCOUNT_COLOR); 
+        } else {
+            discountLabel.setText("Full Price");
+            discountLabel.setForeground(TEXT_SUBTLE);
+        }
+        discountLabel.setFont(new Font("SansSerif", Font.ITALIC, 11));
+        discountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
+        // Buy Button
+        JButton buyBtn = new JButton("Buy at Retailer"); 
+        buyBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+        buyBtn.setBackground(ACCENT_SECONDARY);
+        buyBtn.setForeground(Color.BLACK);
+        buyBtn.setFocusPainted(false);
+        buyBtn.setAlignmentX(Component.CENTER_ALIGNMENT);
+        buyBtn.setMaximumSize(new Dimension(200, 40));
+        
+        // ACTION LISTENER: Open the purchase URL in a browser
+        buyBtn.addActionListener(e -> {
+            String url = manhwa.getPurchaseUrl();
+            if (url == null || url.trim().isEmpty()) {
+                 JOptionPane.showMessageDialog(this, 
+                    "Purchase link not available for " + manhwa.getTitle(), 
+                    "No Link Found", JOptionPane.WARNING_MESSAGE);
+                 return;
+            }
+            
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                try {
+                    Desktop.getDesktop().browse(new URI(url));
+                } catch (IOException | URISyntaxException ex) {
+                    JOptionPane.showMessageDialog(this, 
+                        "Could not open link. Please check your browser settings or URL: " + url, 
+                        "Error Opening Link", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, 
+                    "Browser browsing not supported on this system.\nURL: " + url, 
+                    "System Error", JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        
+        infoPanel.add(titleLabel);
+        infoPanel.add(authorLabel);
+        infoPanel.add(Box.createVerticalStrut(15));
+        infoPanel.add(priceLabel);
+        infoPanel.add(Box.createVerticalStrut(5));
+        infoPanel.add(discountLabel);
+        infoPanel.add(Box.createVerticalGlue()); // Pushes the button to the bottom
+        infoPanel.add(buyBtn);
+        infoPanel.add(Box.createVerticalStrut(10));
+        
+        card.add(infoPanel, BorderLayout.CENTER);
+        
+        // Hover effect
+        card.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 3));
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 1));
+            }
+        });
+        
+        return card;
+    }
+}
