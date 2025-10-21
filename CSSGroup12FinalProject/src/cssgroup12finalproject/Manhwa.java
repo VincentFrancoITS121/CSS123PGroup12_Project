@@ -8,7 +8,11 @@ package cssgroup12finalproject;
  *
  * @author jojosh
  */
-public class Manhwa {
+import java.io.Serializable;
+
+public class Manhwa implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String title;
     private String author;
     private String genre;
@@ -21,8 +25,8 @@ public class Manhwa {
     private boolean hasDiscount;
     private String couponCode;
     private String purchaseUrl;
-    
-    public Manhwa(String title, String author, String genre, String demographic, 
+
+    public Manhwa(String title, String author, String genre, String demographic,
                   String ageRating, double rating, String description) {
         this.title = title;
         this.author = author;
@@ -35,8 +39,8 @@ public class Manhwa {
         this.hasDiscount = false;
         this.purchaseUrl = "";
     }
-    
-    // Getters
+
+    // -- getters and setters (same as your existing ones)
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
     public String getGenre() { return genre; }
@@ -49,8 +53,7 @@ public class Manhwa {
     public boolean hasDiscount() { return hasDiscount; }
     public String getCouponCode() { return couponCode; }
     public String getPurchaseUrl() { return purchaseUrl; }
-    
-    // Setters
+
     public void setTitle(String title) { this.title = title; }
     public void setAuthor(String author) { this.author = author; }
     public void setGenre(String genre) { this.genre = genre; }
@@ -63,7 +66,7 @@ public class Manhwa {
     public void setHasDiscount(boolean hasDiscount) { this.hasDiscount = hasDiscount; }
     public void setCouponCode(String couponCode) { this.couponCode = couponCode; }
     public void setPurchaseUrl(String purchaseUrl) { this.purchaseUrl = purchaseUrl; }
-    
+
     @Override
     public String toString() {
         return title + " by " + author + " [" + genre + "]";
