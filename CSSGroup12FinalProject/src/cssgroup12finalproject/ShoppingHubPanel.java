@@ -1,4 +1,4 @@
-package com.mycompany.cssgroup12finalproject;
+package cssgroup12finalproject;
 
 import javax.swing.*;
 import java.awt.*;

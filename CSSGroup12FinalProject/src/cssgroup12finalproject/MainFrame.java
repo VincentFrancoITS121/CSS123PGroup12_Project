@@ -2,6 +2,8 @@ package cssgroup12finalproject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
@@ -20,6 +22,7 @@ public class MainFrame extends JFrame {
         initializeFrame();
         setupPanels();
         setupMenuBar();
+        setupKeyboardShortcuts();
     }
     
     private void initializeFrame() {
@@ -72,6 +75,19 @@ public class MainFrame extends JFrame {
         genreMenu.add(romanceItem);
         genreMenu.add(fantasyItem);
         
+        // Age Rating Menu
+        JMenu ageMenu = new JMenu("Age Rating");
+        ageMenu.setFont(menuFont);
+
+        JMenuItem teen = new JMenuItem("13+");
+        JMenuItem mature = new JMenuItem("16+");
+
+        teen.addActionListener(e -> applyFilters(null, null, "13+"));
+        mature.addActionListener(e -> applyFilters(null, null, "16+"));
+
+        ageMenu.add(teen);
+        ageMenu.add(mature);
+        
         // Demographic Menu
         JMenu demoMenu = new JMenu("Demographics");
         demoMenu.setFont(menuFont);
@@ -112,6 +128,7 @@ public class MainFrame extends JFrame {
         
         menuBar.add(genreMenu);
         menuBar.add(demoMenu);
+        menuBar.add(ageMenu);   
         menuBar.add(randomMenu);
         menuBar.add(shopMenu); // ADD TO MENU BAR
         
@@ -137,4 +154,18 @@ public class MainFrame extends JFrame {
     public static Color getPrimaryColor() { return PRIMARY_COLOR; }
     public static Color getAccentColor() { return ACCENT_COLOR; }
     public static Color getBackgroundColor() { return BACKGROUND_COLOR; }
+    
+    private void setupKeyboardShortcuts() {
+    KeyboardFocusManager.getCurrentKeyboardFocusManager()
+        .addKeyEventDispatcher(e -> {
+            if (e.getID() == KeyEvent.KEY_PRESSED && e.isControlDown()) {
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_H: showPanel("HOME"); return true;
+                    case KeyEvent.VK_R: showPanel("RECOMMENDATIONS"); return true;
+                    case KeyEvent.VK_S: showPanel("SHOPPING_HUB"); return true;
+                }
+            }
+            return false;
+        });
+    }
 }

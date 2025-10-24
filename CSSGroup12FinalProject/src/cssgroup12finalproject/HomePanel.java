@@ -23,6 +23,8 @@ public class HomePanel extends JPanel {
     private JPanel carouselPanel;
     private int currentIndex = 0;
     private Timer carouselTimer;
+    private JLabel timerLabel;
+    private int countdown = 4;
 
     // Colors and Fonts for consistency
     private final Color BACKGROUND_DARK = new Color(30, 30, 45);
@@ -124,21 +126,38 @@ public class HomePanel extends JPanel {
         carouselPanel.add(carouselGenreLabel);
         carouselPanel.add(Box.createVerticalStrut(5));
         carouselPanel.add(carouselRatingLabel);
-
+        
+        // ADD COUNTDOWN TIMER DISPLAY
+        timerLabel = new JLabel("Next in 4s", SwingConstants.CENTER);
+        timerLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        timerLabel.setForeground(TEXT_SUBTLE);
+        carouselPanel.add(Box.createVerticalStrut(10));
+        carouselPanel.add(timerLabel);
         add(carouselPanel, BorderLayout.CENTER);
     }
 
-    private void startCarousel() {
-        if (featuredManhwa == null || featuredManhwa.isEmpty()) return;
-
+    public void startCarousel() {
+    // Only start if timer is not already running
+    if (carouselTimer == null && featuredManhwa != null && !featuredManhwa.isEmpty()) {
+        countdown = 4; // Reset countdown
         carouselTimer = new Timer();
         carouselTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                SwingUtilities.invokeLater(() -> updateCarousel());
+                SwingUtilities.invokeLater(() -> {
+                    countdown--;
+                    if (countdown <= 0) {
+                        updateCarousel();
+                        countdown = 4;
+                    }
+                    if (timerLabel != null) {
+                        timerLabel.setText("Next in " + countdown + "s");
+                    }
+                });
             }
-        }, 0, 4000); // rotates every 4 seconds
+        }, 0, 1000);
     }
+}
 
     private void updateCarousel() {
         if (featuredManhwa.isEmpty()) return;
