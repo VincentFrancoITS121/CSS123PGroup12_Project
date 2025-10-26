@@ -112,14 +112,9 @@ public class MainFrame extends JFrame {
         });
         randomMenu.add(randomItem);
         
-        menuBar.add(genreMenu);
-        menuBar.add(demoMenu);
-        menuBar.add(randomMenu);
-        
-        setJMenuBar(menuBar);
-        
         // Shopping Hub
         JMenu shopMenu = new JMenu("Shop");
+        shopMenu.setFont(menuFont); // <-- FIX: Set the font here to make it bold
         JMenuItem shopItem = new JMenuItem("Go to Shopping Hub");
         shopItem.addActionListener(e -> {
             showPanel("SHOPPING_HUB");
@@ -130,7 +125,7 @@ public class MainFrame extends JFrame {
         menuBar.add(demoMenu);
         menuBar.add(ageMenu);   
         menuBar.add(randomMenu);
-        menuBar.add(shopMenu); // ADD TO MENU BAR
+        menuBar.add(shopMenu); 
         
         setJMenuBar(menuBar);
     }
@@ -148,6 +143,16 @@ public class MainFrame extends JFrame {
     public void applyFilters(String genre, String demographic, String ageRating) {
         recommendationPanel.updateRecommendations(genre, demographic, ageRating);
         showPanel("RECOMMENDATIONS");
+    }
+
+    // Helper method to convert a Color object to an HTML hex string (e.g., #FF00FF)
+    public static String toHtmlColor(Color color) {
+        return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
+    }
+
+    // Helper method to expose RecommendationPanel instance
+    public RecommendationPanel getRecommendationPanel() {
+        return recommendationPanel;
     }
 
     // Helper methods to expose theme colors to other panels

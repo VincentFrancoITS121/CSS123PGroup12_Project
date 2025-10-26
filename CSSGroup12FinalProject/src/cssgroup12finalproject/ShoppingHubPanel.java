@@ -14,20 +14,19 @@ public class ShoppingHubPanel extends JPanel {
     private ManhwaDatabase database;
     private JPanel shopGrid;
     
-    // UI Constants (Matching the Dark Theme)
-    private final Color BACKGROUND_DARK = new Color(30, 30, 45);
-    private final Color CARD_BACKGROUND = new Color(55, 55, 75);
-    private final Color ACCENT_PRIMARY = new Color(106, 142, 255);
-    private final Color ACCENT_SECONDARY = new Color(96, 227, 176); // Buy Button Color (Mint Green)
-    private final Color TEXT_LIGHT = new Color(230, 230, 230);
-    private final Color TEXT_SUBTLE = new Color(180, 180, 180);
-    private final Color PRICE_COLOR = new Color(255, 215, 0); // Gold for Price
-    private final Color DISCOUNT_COLOR = new Color(255, 99, 71); // Tomato Red for urgent discount
+    // --- UI Constants imported from AppConfig ---
+    private final Color BACKGROUND_DARK = AppConfig.BG_DARK;
+    private final Color CARD_BACKGROUND = AppConfig.BG_CARD;
+    private final Color ACCENT_PRIMARY = AppConfig.ACCENT_PRIMARY;
+    private final Color ACCENT_SECONDARY = AppConfig.ACCENT_SECONDARY;
+    private final Color TEXT_LIGHT = AppConfig.TEXT_LIGHT;
+    private final Color TEXT_SUBTLE = AppConfig.TEXT_SUBTLE;
+    private final Color PRICE_COLOR = AppConfig.GOLD; 
+    private final Color DISCOUNT_COLOR = AppConfig.DISCOUNT_RED; 
 
-    // Font definitions for consistency
-    private final Font TITLE_FONT = new Font("SansSerif", Font.BOLD, 28);
-    private final Font CARD_TITLE_FONT = new Font("SansSerif", Font.BOLD, 18);
-    private final Font BUTTON_FONT = new Font("SansSerif", Font.PLAIN, 14);
+    private final Font TITLE_FONT = AppConfig.TITLE_MEDIUM;
+    private final Font CARD_TITLE_FONT = AppConfig.CARD_TITLE;
+    private final Font BUTTON_FONT = AppConfig.BUTTON;
     
     public ShoppingHubPanel(MainFrame parentFrame) {
         this.parentFrame = parentFrame;
@@ -42,10 +41,11 @@ public class ShoppingHubPanel extends JPanel {
         // Header Panel
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(BACKGROUND_DARK);
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(AppConfig.PADDING, AppConfig.PADDING, 
+                                                             AppConfig.PADDING, AppConfig.PADDING));
         
         JButton backBtn = createHeaderButton("← Back to Home", ACCENT_PRIMARY);
-        backBtn.addActionListener(e -> parentFrame.showPanel("HOME"));
+        backBtn.addActionListener(e -> parentFrame.showPanel(AppConfig.PANEL_HOME));
         headerPanel.add(backBtn, BorderLayout.WEST);
         
         JLabel titleLabel = new JLabel("Manhwa Shopping Hub 🛒", SwingConstants.CENTER);
@@ -56,9 +56,9 @@ public class ShoppingHubPanel extends JPanel {
         add(headerPanel, BorderLayout.NORTH);
         
         // Manhwa Shop Grid
-        shopGrid = new JPanel(new GridLayout(0, 4, 25, 25)); // 4 columns
+        shopGrid = new JPanel(new GridLayout(0, AppConfig.GRID_COLUMNS, AppConfig.GRID_GAP, AppConfig.GRID_GAP)); 
         shopGrid.setBackground(BACKGROUND_DARK);
-        shopGrid.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
+        shopGrid.setBorder(BorderFactory.createEmptyBorder(AppConfig.PADDING, AppConfig.PADDING, AppConfig.PADDING, AppConfig.PADDING));
         
         JScrollPane scrollPane = new JScrollPane(shopGrid);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -85,11 +85,11 @@ public class ShoppingHubPanel extends JPanel {
         if (allManhwa.isEmpty()) {
              shopGrid.setLayout(new GridBagLayout()); 
              JLabel noProducts = new JLabel("No products available in the shop.");
-             noProducts.setFont(new Font("SansSerif", Font.PLAIN, 24));
+             noProducts.setFont(AppConfig.TITLE_MEDIUM);
              noProducts.setForeground(TEXT_SUBTLE);
              shopGrid.add(noProducts);
         } else {
-             shopGrid.setLayout(new GridLayout(0, 4, 25, 25));
+             shopGrid.setLayout(new GridLayout(0, AppConfig.GRID_COLUMNS, AppConfig.GRID_GAP, AppConfig.GRID_GAP));
              for (Manhwa manhwa : allManhwa) {
                  shopGrid.add(createProductCard(manhwa));
              }
@@ -103,14 +103,14 @@ public class ShoppingHubPanel extends JPanel {
         JPanel card = new JPanel(new BorderLayout(5, 5));
         card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 1));
         card.setBackground(CARD_BACKGROUND);
-        card.setPreferredSize(new Dimension(250, 400));
+        card.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH, AppConfig.SHOP_CARD_HEIGHT));
         
         // Image Placeholder
         JLabel imageLabel = new JLabel("💰", SwingConstants.CENTER);
         imageLabel.setFont(new Font("SansSerif", Font.PLAIN, 80));
-        imageLabel.setPreferredSize(new Dimension(230, 180));
+        imageLabel.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH - 20, 180));
         imageLabel.setOpaque(true);
-        imageLabel.setBackground(new Color(45, 45, 60));
+        imageLabel.setBackground(AppConfig.BG_IMAGE);
         imageLabel.setForeground(ACCENT_PRIMARY);
         card.add(imageLabel, BorderLayout.NORTH);
         
@@ -126,36 +126,34 @@ public class ShoppingHubPanel extends JPanel {
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         JLabel authorLabel = new JLabel("by " + manhwa.getAuthor());
-        authorLabel.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        authorLabel.setFont(AppConfig.SMALL);
         authorLabel.setForeground(TEXT_SUBTLE);
         authorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // Price Label Setup
         JLabel priceLabel = new JLabel(String.format("$%.2f", manhwa.getPrice()));
-        priceLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
-        priceLabel.setForeground(PRICE_COLOR);
+        priceLabel.setFont(AppConfig.TITLE_SMALL);
+        
+        JLabel discountLabel = new JLabel();
         
         if (manhwa.hasDiscount()) {
             priceLabel.setText("SALE: " + priceLabel.getText());
             priceLabel.setForeground(ACCENT_SECONDARY); // Green for sale
-        }
-        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // Discount/Coupon Info
-        JLabel discountLabel = new JLabel();
-        if (manhwa.hasDiscount()) {
             discountLabel.setText("Coupon: " + manhwa.getCouponCode());
-            discountLabel.setForeground(DISCOUNT_COLOR); 
+            discountLabel.setForeground(DISCOUNT_COLOR); // Red for urgent discount
         } else {
+            priceLabel.setForeground(PRICE_COLOR); // Gold for full price
             discountLabel.setText("Full Price");
             discountLabel.setForeground(TEXT_SUBTLE);
         }
+        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        
         discountLabel.setFont(new Font("SansSerif", Font.ITALIC, 11));
         discountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // Buy Button
         JButton buyBtn = new JButton("Buy at Retailer"); 
-        buyBtn.setFont(new Font("SansSerif", Font.BOLD, 16));
+        buyBtn.setFont(BUTTON_FONT);
         buyBtn.setBackground(ACCENT_SECONDARY);
         buyBtn.setForeground(Color.BLACK);
         buyBtn.setFocusPainted(false);
@@ -165,6 +163,7 @@ public class ShoppingHubPanel extends JPanel {
         // ACTION LISTENER: Open the purchase URL in a browser
         buyBtn.addActionListener(e -> {
             String url = manhwa.getPurchaseUrl();
+            // ... (rest of the action listener logic remains the same)
             if (url == null || url.trim().isEmpty()) {
                  JOptionPane.showMessageDialog(this, 
                     "Purchase link not available for " + manhwa.getTitle(), 
@@ -189,11 +188,11 @@ public class ShoppingHubPanel extends JPanel {
         
         infoPanel.add(titleLabel);
         infoPanel.add(authorLabel);
-        infoPanel.add(Box.createVerticalStrut(15));
+        infoPanel.add(Box.createVerticalStrut(10));
         infoPanel.add(priceLabel);
         infoPanel.add(Box.createVerticalStrut(5));
         infoPanel.add(discountLabel);
-        infoPanel.add(Box.createVerticalGlue()); // Pushes the button to the bottom
+        infoPanel.add(Box.createVerticalGlue()); 
         infoPanel.add(buyBtn);
         infoPanel.add(Box.createVerticalStrut(10));
         
