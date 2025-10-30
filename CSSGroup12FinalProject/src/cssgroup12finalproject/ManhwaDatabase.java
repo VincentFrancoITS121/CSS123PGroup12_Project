@@ -140,191 +140,191 @@ public class ManhwaDatabase implements Serializable {
         manhwaList.add(new Manhwa("Unordinary", "Uru-chan", "Action", "Shounen", "13+", 9.4,
                 "In a world where everyone has superpowers, a 'cripple' hides a dark secret."));
         manhwaList.add(new Manhwa("The Beginning After the End", "TurtleMe", "Fantasy", "Shounen", "16+", 9.5, 
-                                  8.99, true, "TBAE2025", "https://tapas.io/series/tbate"));
+                "A reincarnated king in a magical world seeks redemption and strength to protect his loved ones from powerful enemies."));
         manhwaList.add(new Manhwa("Noblesse", "Son Jeho", "Supernatural", "Shounen", "16+", 9.0,
-                                  6.50, false, "", "https://www.webtoons.com/en/fantasy/noblesse"));
+                "An ancient noble awakens in the modern world to protect humanity and his friends from supernatural threats."));
         manhwaList.add(new Manhwa("God of High School", "Yongje Park", "Action", "Shounen", "16+", 9.1,
-                                  7.99, false, "", "https://www.webtoons.com/en/action/the-god-of-high-school"));
+                "Teen fighters compete in an epic martial arts tournament that hides divine secrets and world-altering powers."));
         manhwaList.add(new Manhwa("Sweet Home", "Carnby Kim", "Horror", "Seinen", "16+", 9.3,
-                                  8.25, true, "SWHM25", "https://www.webtoons.com/en/thriller/sweethome"));
+                "A reclusive teenager struggles to survive in an apartment complex overrun by terrifying monsters born from human desires."));
         manhwaList.add(new Manhwa("Bastard", "Carnby Kim", "Thriller", "Seinen", "16+", 9.5,
-                                  8.50, false, "", "https://www.webtoons.com/en/thriller/bastard"));
+                "A high school boy lives in fear as he hides the horrifying truth that his father is a serial killer."));
         manhwaList.add(new Manhwa("Leviathan", "Ryuho Son", "Sci-Fi", "Seinen", "16+", 8.9, 7.70,
-                                  false, "", "https://www.webtoons.com/en/action/leviathan"));
+                "In a flooded post-apocalyptic world, a boy and his sister fight to survive against pirates, sea monsters, and the cruelty of humanity."));
         manhwaList.add(new Manhwa("Get Schooled", "Chongtak", "Drama", "Seinen", "16+", 9.0, 7.99,
-                                  true, "EDU25", "https://www.webtoons.com/en/drama/get-schooled"));
+                "A strict government enforcer uses brutal methods to reform violent and corrupt schools across the country."));
         manhwaList.add(new Manhwa("Jungle Juice", "Hyung Eun", "Action", "Shounen", "16+", 8.7,
-                                  6.99, false, "", "https://www.webtoons.com/en/action/jungle-juice"));
+                "A college student who hides his insect wings gets thrust into a hidden world of human-insect hybrids after his secret is exposed."));
         manhwaList.add(new Manhwa("DICE: The Cube That Changes Everything", "Yun Hyunseok", "Fantasy", "Shounen", "16+", 8.5,
-                                  6.70, false, "", "https://www.webtoons.com/en/fantasy/dice"));
+                "A bullied student’s life changes when mysterious cubes grant players the ability to alter their fate."));
         manhwaList.add(new Manhwa("Hardcore Leveling Warrior", "Sehun Kim", "Fantasy", "Shounen", "16+", 8.8,
-                                  7.10, true, "HLW25", "https://www.webtoons.com/en/action/hardcore-leveling-warrior"));
+                "A once-top gamer seeks redemption after losing everything in a deadly virtual world that blurs the line with reality."));
         manhwaList.add(new Manhwa("Wind Breaker", "Jo Yongseok", "Sports", "Shounen", "16+", 9.2,
-                                  7.50, false, "", "https://www.webtoons.com/en/sports/windbreaker"));
+                "A high school biker gang protects their town and friends while learning about loyalty, strength, and self-discovery."));
         manhwaList.add(new Manhwa("Viral Hit", "Taejun Park", "Action", "Seinen", "16+", 9.1,
-                                  8.10, true, "VRL25", "https://www.webtoons.com/en/action/how-to-fight"));
+                "A bullied teen becomes a viral sensation by fighting back and exposing corruption through live-streamed street battles."));
         manhwaList.add(new Manhwa("Questism", "Taejun Park", "Action", "Seinen", "16+", 8.9,
-                                  7.90, true, "QSM25", "https://www.webtoons.com/en/action/questism"));
+                "A delinquent’s life turns into an RPG where completing bizarre quests grants him powers and changes his fate."));
         manhwaList.add(new Manhwa("Nano Machine", "Han Joong Wueol Ya", "Action", "Shounen", "16+", 9.0,
-                                  7.99, true, "NANO25", "https://www.webtoons.com/en/action/nano-machine"));
+                "A neglected prince’s life transforms when nanotechnology from the future grants him unparalleled martial power."));
         manhwaList.add(new Manhwa("Return of the Mount Hua Sect", "Biga", "Martial Arts", "Shounen", "16+", 9.3,
-                                  8.25, true, "MTHUA25", "https://www.webtoons.com/en/action/return-of-the-mount-hua-sect"));
+                "The last surviving member of a fallen martial sect reincarnates and vows to restore its former glory."));
         manhwaList.add(new Manhwa("The Breaker: Eternal Force", "Jeon Geuk-jin", "Martial Arts", "Seinen", "16+", 9.1,
-                                  7.70, false, "", "https://www.webtoons.com/en/action/the-breaker-eternal-force"));
+                "A bullied teenager’s life changes when he meets a mysterious martial artist who drags him into the hidden world of Murim."));
         manhwaList.add(new Manhwa("Mercenary Enrollment", "YC", "Action", "Seinen", "16+", 9.4,
-                                  8.10, true, "MERC25", "https://www.webtoons.com/en/action/mercenary-enrollment"));
+                "A teenage ex-mercenary tries to live a normal high school life while using his deadly skills to protect those he cares about."));
         manhwaList.add(new Manhwa("Second Life Ranker", "Sadoyeon", "Fantasy", "Seinen", "16+", 9.2,
-                                  7.80, false, "", "https://www.tappytoon.com/en/book/second-life-ranker"));
+                "A man climbs a deadly tower seeking revenge for his twin brother, armed with his brother’s memories and power."));
         manhwaList.add(new Manhwa("Dungeon Reset", "Ant Studio", "Adventure", "Shounen", "16+", 8.8,
-                                  6.99, true, "DUNR25", "https://www.webtoons.com/en/fantasy/dungeon-reset"));
+                "After a dungeon glitch traps him in a deadly loop, a player uses creativity and persistence to turn his endless resets into strength."));
         manhwaList.add(new Manhwa("A Returner’s Magic Should Be Special", "Sun-Wook Jeon", "Fantasy", "Shounen", "16+", 9.1,
-                                  7.50, false, "", "https://www.webtoons.com/en/fantasy/a-returners-magic-should-be-special"));
+                "A powerful magician goes back in time to prevent humanity’s destruction and train his friends for the coming apocalypse."));
         manhwaList.add(new Manhwa("Trash of the Count’s Family", "Yoo Ryeo Han", "Fantasy", "Seinen", "16+", 9.0,
-                                  8.00, true, "TCF25", "https://www.tappytoon.com/en/book/trash-of-the-counts-family"));
+                "A powerful magician goes back in time to prevent humanity’s destruction and train his friends for the coming apocalypse."));
         manhwaList.add(new Manhwa("Player Who Can’t Level Up", "Garam Teo", "Fantasy", "Seinen", "16+", 8.9,
-                                  7.60, true, "PWCLU25", "https://www.webtoons.com/en/fantasy/player-who-cant-level-up"));
+                "A player stuck at level one discovers unique abilities that let him grow stronger in ways no one else can."));
         manhwaList.add(new Manhwa("Reaper of the Drifting Moon", "Mok-In", "Action", "Seinen", "16+", 9.3,
-                                  8.40, false, "", "https://www.tappytoon.com/en/book/reaper-of-the-drifting-moon"));
+               "A man raised as a tool of assassination escapes his captors and embarks on a path of vengeance in a dark martial world."));
         manhwaList.add(new Manhwa("Infinite Level Up in Murim", "Gom-Guk", "Martial Arts", "Shounen", "16+", 8.8,
-                                  7.25, false, "", "https://www.webtoons.com/en/action/infinite-level-up-in-murim"));
+               "A man reincarnated into a martial world gains a game-like system that lets him level up endlessly beyond human limits."));
         manhwaList.add(new Manhwa("The Legend of the Northern Blade", "Hae Min", "Martial Arts", "Seinen", "16+", 9.2,
-                                  8.50, true, "NORTH25", "https://www.tappytoon.com/en/book/the-legend-of-the-northern-blade"));
+               "The last heir of a fallen sect trains in isolation to reclaim his father’s legacy and restore the Northern Heavenly Sect."));
         manhwaList.add(new Manhwa("SSS-Class Revival Hunter", "Shin Noah", "Fantasy", "Seinen", "16+", 9.1,
-                                  7.99, false, "", "https://www.webtoons.com/en/action/sss-class-revival-hunter"));
+               "A weak hunter gains the ability to return to the past upon death, using it to climb the ranks and outsmart fate itself."));
         manhwaList.add(new Manhwa("Survival Story of a Sword King in a Fantasy World", "Kwon Sun Kyu", "Fantasy", "Seinen", "16+", 9.0,
-                                  7.80, false, "", "https://www.webtoons.com/en/action/survival-story-of-a-sword-king-in-a-fantasy-world"));
+               "A man trapped in a harsh game-like world becomes overpowered after countless deaths and survival trials."));
         manhwaList.add(new Manhwa("Tomb Raider King", "San.G", "Action", "Seinen", "16+", 8.9,
-                                  7.40, true, "TRK25", "https://www.webtoons.com/en/action/tomb-raider-king"));
+               "A relic hunter races against gods and rivals to seize powerful artifacts and rewrite his destiny."));
         manhwaList.add(new Manhwa("Max Level Returner", "Jang Sung-Lak", "Action", "Shounen", "16+", 8.7,
-                                  7.20, true, "MLR25", "https://www.webtoons.com/en/action/max-level-returner"));
+               "The first player to clear a deadly game returns to the real world, only to face its reemergence and fight to protect humanity again."));
         manhwaList.add(new Manhwa("Overgeared", "Park Saenal", "Fantasy", "Seinen", "16+", 9.0,
-                                  8.10, true, "OVRG25", "https://www.tappytoon.com/en/book/overgeared"));
+               "A struggling gamer’s luck turns when he obtains a legendary class and crafts his way to power and respect in a vast virtual world."));
         manhwaList.add(new Manhwa("The Live", "Ant Studio", "Drama", "Seinen", "16+", 8.9,
-                                  7.40, false, "", "https://www.webtoons.com/en/drama/the-live"));
+               "After losing everything, a man is given a second chance to change the past and save his family by clearing a deadly game-like world."));
         manhwaList.add(new Manhwa("Leveling With the Gods", "Ohyeon", "Action", "Seinen", "16+", 9.3,
-                                  8.60, true, "LWTG25", "https://www.webtoons.com/en/action/leveling-with-the-gods"));
+               "A warrior who failed to defeat the gods climbs back from the abyss to challenge them again through relentless battles and growth."));
         manhwaList.add(new Manhwa("The Gamer", "Sung San-Young", "Fantasy", "Shounen", "16+", 8.6,
-                                  6.99, false, "", "https://www.webtoons.com/en/action/the-gamer"));
+               "A high school student gains the ability to live life like a video game, complete with levels, skills, and quests."));
         manhwaList.add(new Manhwa("Gosu", "Ji-Min Park", "Martial Arts", "Seinen", "16+", 9.1,
-                                  7.99, false, "", "https://www.webtoons.com/en/action/gosu"));
+               "The disciple of a slain martial arts master sets out on a comedic yet action-packed journey of revenge in the Murim world."));
         manhwaList.add(new Manhwa("Black Haze", "Jin-Hwan Park", "Fantasy", "Seinen", "16+", 8.7,
-                                  6.50, false, "", "https://example-retailer.com/black-haze"));
+               "A powerful magician hiding his identity becomes a student bodyguard, uncovering secrets about his past and the magic world."));
         manhwaList.add(new Manhwa("The God of Blackfield", "Han Ji-Hoon", "Action", "Seinen", "16+", 8.9,
-                                  7.50, true, "GBF25", "https://example-retailer.com/god-of-blackfield"));
+               "A soldier killed in battle mysteriously awakens in another body and seeks vengeance on those who betrayed him."));
         manhwaList.add(new Manhwa("The Boxer", "JH", "Sports", "Seinen", "16+", 8.8,
-                                  7.20, false, "", "https://www.izepress.com/the-boxer"));
+               "A quiet prodigy with monstrous talent enters the boxing world, exploring the meaning of strength, pain, and purpose."));
         manhwaList.add(new Manhwa("The Scholar's Reincarnation", "Cheongcho", "Fantasy", "Seinen", "16+", 8.5,
-                                  6.99, false, "", "https://www.webtoons.com/en/fantasy/scholars-reincarnation"));
+               "A warlord reborn as a scholar’s son seeks redemption through peace and wisdom instead of violence."));
         manhwaList.add(new Manhwa("The Legendary Moonlight Sculptor", "Nam Heesung", "Fantasy", "Shounen", "16+", 9.0,
-                                  8.10, true, "LMS25", "https://www.tappytoon.com/en/book/moonlight-sculptor"));
+               "A broke gamer enters a virtual reality game to earn money, only to become a legend through his creativity and hard work."));
         manhwaList.add(new Manhwa("A Capable Maid", "Hyeok", "Drama", "Seinen", "16+", 8.2,
-                                  6.75, false, "", "https://example-retailer.com/a-capable-maid"));
+               "A once-powerless servant uses her hidden intelligence and resourcefulness to rise above her station and protect her master."));
         manhwaList.add(new Manhwa("The Villainess Reverses the Hourglass", "Satoshi", "Drama", "Seinen", "16+", 8.3,
-                                  7.00, false, "", "https://example-retailer.com/villainess-hourglass"));
+               "After being executed unjustly, a noblewoman is sent back in time with an hourglass that lets her rewrite her fate."));
         manhwaList.add(new Manhwa("The Devil's Boy", "Kim Hyeon-Jun", "Supernatural", "Seinen", "16+", 8.1,
-                                  6.80, false, "", "https://example-retailer.com/the-devils-boy"));
+               "A bullied teen gains demonic powers through a dangerous pact and struggles between revenge and his humanity."));
         manhwaList.add(new Manhwa("Heavenly Demon Instructor", "Park Ji-Hoon", "Martial Arts", "Shounen", "16+", 8.6,
-                                  7.25, true, "HDI25", "https://example-retailer.com/heavenly-demon-instructor"));
+               "A boy gains the guidance of a powerful martial spirit who trains him to survive and grow stronger in a harsh world."));
         manhwaList.add(new Manhwa("The Legendary Moon's Return", "Seo Kyeong", "Fantasy", "Seinen", "16+", 8.5,
-                                  7.00, false, "", "https://example-retailer.com/leg-moon-return"));
+               "A once-feared martial artist returns from exile to reclaim his place and restore his sect’s honor."));
         manhwaList.add(new Manhwa("The Villainess Lives Twice", "Kim H.", "Drama", "Seinen", "16+", 8.0,
-                                  6.50, false, "", "https://example-retailer.com/villainess-twice"));
+               "Betrayed and executed in her first life, a cunning noblewoman reincarnates to outmaneuver her enemies and seize control of her destiny."));
         manhwaList.add(new Manhwa("My Dad Is Too Strong", "Han Jun", "Action", "Shounen", "16+", 8.4,
-                                  6.99, true, "MDTS25", "https://example-retailer.com/my-dad-is-too-strong"));
+               "A former special agent trying to live a peaceful life struggles to hide his overwhelming strength from his adorable adopted daughter."));
         manhwaList.add(new Manhwa("The Death Mage Who Doesn't Want a Fourth Time", "Ryu", "Fantasy", "Seinen", "16+", 8.2,
-                                  6.90, false, "", "https://example-retailer.com/death-mage"));
+                "After countless reincarnations filled with betrayal, a boy born in a new world seeks peace while wielding death magic."));
         manhwaList.add(new Manhwa("Revenant Architect", "Cho Nam", "Action", "Seinen", "16+", 8.7,
-                                  7.40, false, "", "https://example-retailer.com/revenant-architect"));
+                "A brilliant architect returns from death to rebuild a corrupted city and expose the truth behind his murder."));
         manhwaList.add(new Manhwa("Sword of the Emperor", "Kang Min", "Martial Arts", "Seinen", "16+", 8.8,
-                                  7.60, true, "SOE25", "https://example-retailer.com/sword-of-the-emperor"));
+                "A loyal warrior rises through blood and battle to become the blade that defends the empire and defines its destiny."));
         manhwaList.add(new Manhwa("The Lone Necromancer", "Park Ji", "Dark Fantasy", "Seinen", "16+", 8.6
-                                  , 7.10, false, "", "https://example-retailer.com/lone-necromancer"));
+                "A university student awakens necromantic powers in a post-apocalyptic world where the dead and living clash for survival."));
         manhwaList.add(new Manhwa("Kubera", "Currygom", "Fantasy", "Seinen", "16+", 8.7,
-                                  7.50, false, "", "https://www.webtoons.com/en/fantasy/kubera"));
+                "A young girl named Kubera embarks on a perilous journey for revenge, entwined with gods, destruction, and destiny itself."));
         manhwaList.add(new Manhwa("Painter of the Night", "Heewon", "Historical/Drama", "Seinen", "16+", 8.9,
-                                  7.80, false, "", "https://example-retailer.com/painter-of-the-night"));
+                "In Joseon-era Korea, a young artist’s life is upended when he’s drawn into a dangerous relationship with a powerful nobleman."));
         manhwaList.add(new Manhwa("Who Made Me a Princess", "Plutus", "Romance/Fantasy", "Seinen", "16+", 9.1,
-                                  8.10, false, "", "https://www.webtoons.com/en/fantasy/who-made-me-a-princess"));
+                "A modern girl reincarnates as a doomed princess in a fairy-tale empire and must win her cold father’s love to survive."));
         manhwaList.add(new Manhwa("Your Throne (I Want to Be You, Just For A Day)", "SAM", "Drama/Romance", "Seinen", "16+", 8.8,
-                                  7.40, false, "", "https://example-retailer.com/your-throne"));
+                "A cunning noblewoman swaps bodies with her rival to seize power and uncover the truth behind betrayal."));
         manhwaList.add(new Manhwa("The Reason Why Raeliana Ended Up at the Duke's Mansion", "Milcha", "Romance", "Seinen", "16+", 8.6,
-                                  7.20, false, "", "https://example-retailer.com/raeliana"));
+                "A woman reborn into a novel strikes a deal with a cold duke to avoid her scripted death."));
         manhwaList.add(new Manhwa("The Duchess' 50 Tea Recipes", "Ant Studio", "Slice of Life/Romance", "Seinen", "16+", 8.4,
-                                  6.99, false, "", "https://example-retailer.com/50-tea-recipes"));
+                "A modern tea expert reincarnates as a duchess and revives her household’s prestige through her exquisite brews."));
         manhwaList.add(new Manhwa("Light and Shadow", "Ryou Maekawa", "Romance/Drama", "Seinen", "16+", 8.5,
-                                  7.00, false, "", "https://example-retailer.com/light-and-shadow"));
+                "A servant girl’s hidden identity and fierce determination transform her into a powerful duchess."));
         manhwaList.add(new Manhwa("The Abandoned Empress", "Yuna", "Drama/Fantasy", "Seinen", "16+", 8.9,
-                                  7.60, true, "AE25", "https://example-retailer.com/abandoned-empress"));
+                "Betrayed by fate, an empress who loses everything finds herself reborn with the chance to rewrite her destiny."));
         manhwaList.add(new Manhwa("Lady to Queen", "Mok Young", "Romance", "Seinen", "16+", 8.2,
-                                  6.80, false, "", "https://example-retailer.com/lady-to-queen"));
+                "A fallen noblewoman becomes queen by playing the political game that once destroyed her family."));
         manhwaList.add(new Manhwa("I Became the Villain's Mother", "Kim Jae-heon", "Drama", "Seinen", "16+", 8.3,
-                                  6.99, false, "", "https://example-retailer.com/villains-mother"));
+                "A woman reincarnates into a novel as the mother of its villain and chooses to love and protect him instead of fearing him."));
         manhwaList.add(new Manhwa("The Monster Duchess and Contract Princess", "Rok Kat", "Fantasy/Romance", "Seinen", "16+", 8.6,
-                                  7.30, true, "MDCP25", "https://example-retailer.com/monster-duchess"));
+                "hA lonely duchess adopts a cursed child, forming an unbreakable bond that defies prejudice and prophecy."));
         manhwaList.add(new Manhwa("The Villainess Wants a Divorce", "Kim S", "Romance/Drama", "Seinen", "16+", 8.1,
-                                  6.75, false, "", "https://example-retailer.com/villainess-divorce"));
+                "A lonely duchess adopts a cursed child, forming an unbreakable bond that defies prejudice and prophecy."));
         manhwaList.add(new Manhwa("A Stepmother's Märchen", "Sung Hee", "Romance/Fantasy", "Seinen", "16+", 8.0,
-                                  6.50, false, "", "https://example-retailer.com/stepmother-marchen"));
+                "A devoted stepmother struggles to reconnect with her stepchildren and rewrite the tragic ending of their fairy-tale family."));
         manhwaList.add(new Manhwa("My Three Tyrant Brothers", "Moomin", "Comedy/Drama", "Seinen", "16+", 7.9,
-                                  6.40, false, "", "https://example-retailer.com/my-three-tyrant-brothers"));
+                "A reincarnated girl tries to survive and tame her three overprotective royal brothers in a twisted palace drama."));
         manhwaList.add(new Manhwa("The Duchess with an Empty Soul", "Yoon H.", "Drama", "Seinen", "16+", 8.2,
-                                  6.95, false, "", "https://example-retailer.com/duchess-empty-soul"));
+                "A woman trapped in a loveless marriage learns to rediscover herself and find meaning beyond her hollow title."));
         manhwaList.add(new Manhwa("A Stepmother’s Romance", "Lee Eun", "Romance", "Seinen", "16+", 7.8,
-                                  6.30, false, "", "https://example-retailer.com/stepmother-romance"));
+                "A widowed stepmother’s life changes when a kind nobleman offers her a second chance at love and happiness."));
         manhwaList.add(new Manhwa("The Justice of Villainous Woman", "Han R.", "Drama", "Seinen", "16+", 8.0,
-                                  6.85, false, "", "https://example-retailer.com/justice-villainous-woman"));
+                "Framed and executed, a noblewoman is granted another life to uncover the truth and change her cruel fate."));
         manhwaList.add(new Manhwa("The Princess Imprints a Traitor", "Park Min", "Historical/Drama", "Seinen", "16+", 8.1,
-                                  7.10, false, "", "https://example-retailer.com/princess-imprints-traitor"));
+                "A fallen princess saves a condemned knight and marks him as her own to reclaim her power."));
         manhwaList.add(new Manhwa("Yumi's Cells", "Donggeon Lee", "Slice of Life/Romance", "Seinen", "16+", 8.4,
-                                  6.99, false, "", "https://www.webtoons.com/en/drama/yumis-cells"));
+                "Yumi’s story unfolds through the voices of her emotions, showing the funny and heartfelt complexities of everyday life and love."));
         manhwaList.add(new Manhwa("My Dear Cold-Blooded King", "Sookie", "Romance/Drama", "Seinen", "16+", 8.2,
-                                  6.50, false, "", "https://example-retailer.com/my-dear-cold-blooded-king"));
+                "A merchant’s daughter gets entangled with a mysterious assassin king and uncovers dangerous secrets of his empire."));
         manhwaList.add(new Manhwa("Annarasumanara", "Ha Il-Kwon", "Fantasy/Drama", "Seinen", "16+", 8.6
-                                  , 7.20, false, "", "https://example-retailer.com/annarasumanara"));
+                "A mysterious magician helps a struggling girl rediscover her lost sense of wonder and belief in magic."));
         manhwaList.add(new Manhwa("The Friendly Winter", "Hee Won", "Romance/Drama", "Seinen", "16+", 7.9,
-                                  6.20, false, "", "https://example-retailer.com/friendly-winter"));
+                 "Two lonely souls—an ill young man and a girl with a child’s heart—form a tender bond that heals their emotional wounds."));
         manhwaList.add(new Manhwa("Distant Sky", "Han Rai", "Drama", "Seinen", "16+", 7.8,
-                                  6.10, false, "", "https://example-retailer.com/distant-sky"));
+                 "Two students awaken in a ruined, monster-filled Seoul and struggle to uncover the mystery behind the city’s destruction."));
         manhwaList.add(new Manhwa("Ares", "Ryu Geum-chel", "Action", "Seinen", "16+", 8.1,
-                                  6.80, false, "", "https://example-retailer.com/ares"));
+                 "In a brutal war-torn land, a young swordsman joins an elite mercenary group in search of vengeance and honor."));
         manhwaList.add(new Manhwa("The Scholar and the Alchemist", "Min Joon", "Fantasy", "Seinen", "16+", 8.0,
-                                  6.70, true, "SCH25", "https://example-retailer.com/scholar-alchemist"));
+                 "A curious scholar and a secretive alchemist join forces to uncover ancient mysteries that challenge science and faith."));
         manhwaList.add(new Manhwa("The Masterful Cat Is Depressed Again Today", "Pochi", "Comedy/Fantasy", "Seinen", "16+", 7.7,
-                                  6.00, false, "", "https://example-retailer.com/masterful-cat"));
+                 "A woman’s life is hilariously managed by her giant, responsible cat who acts more like a human than she does."));
         manhwaList.add(new Manhwa("The Friendly Necromancer", "Kang H.", "Dark Fantasy", "Seinen", "16+", 8.3,
-                                  7.00, false, "", "https://example-retailer.com/friendly-necromancer"));
+                 "A kind-hearted necromancer uses his control over the dead not for power, but to bring peace to restless souls."));
         manhwaList.add(new Manhwa("The Legendary Florist", "Cho Hye", "Romance/Fantasy", "Seinen", "16+", 7.9,
-                                  6.50, false, "", "https://example-retailer.com/legendary-florist"));
+                 "A once-ordinary man builds a legend through flowers, crafting beauty and meaning in a world obsessed with power."));
         manhwaList.add(new Manhwa("Black Survival", "Kim Doo-Sik", "Action/Sci-Fi", "Seinen", "16+", 8.0,
-                                  6.90, false, "", "https://example-retailer.com/black-survival"));
+                 "Stranded on a deadly island, players must fight, craft, and strategize to be the last one standing in a brutal survival game."));
         manhwaList.add(new Manhwa("The Grand Duke's Daughter", "Han Seol", "Drama/Romance", "Seinen", "16+", 8.2,
-                                  6.95, true, "GDD25", "https://example-retailer.com/grand-dukes-daughter"));
+                 "Reborn as the daughter of a feared noble, a clever young woman uses wit and charm to change her tragic destiny."));
         manhwaList.add(new Manhwa("I Became the Chef of the Ruined Restaurant", "Lee Ah", "Slice of Life/Comedy", "Seinen", "16+", 7.6,
-                                  5.90, false, "", "https://example-retailer.com/chef-ruined-restaurant"));
+                 "After a sudden downfall, a passionate cook rebuilds a once-famous restaurant using creativity, grit, and heartwarming dishes."));
         manhwaList.add(new Manhwa("The Outcast", "Min H.", "Supernatural/Thriller", "Seinen", "16+", 8.1,
-                                  7.10, false, "", "https://example-retailer.com/the-outcast"));
+                 "Branded as cursed, a lone survivor wields forbidden powers to defy the world that cast him aside."));
         manhwaList.add(new Manhwa("Paladin's Legacy", "Seo-Kyeong", "Fantasy/Action", "Seinen", "16+", 8.4,
-                                  7.30, true, "PL25", "https://example-retailer.com/paladins-legacy"));
+                 "A fallen paladin journeys to restore his faith and protect the innocent in a world consumed by corruption."));
         manhwaList.add(new Manhwa("The Apothecary's Gate", "Kim Y.", "Historical/Fantasy", "Seinen", "16+", 7.8,
-                                  6.30, false, "", "https://example-retailer.com/apothecarys-gate"));
+                 "An outcast healer discovers a hidden gateway to another realm and must balance alchemy, politics, and forbidden love."));
         manhwaList.add(new Manhwa("The Necromancer's Bride", "Park S.", "Dark Romance", "Seinen", "16+", 8.0,
-                                  6.75, false, "", "https://example-retailer.com/necromancers-bride"));
+                 "A woman betrothed to a feared necromancer uncovers the tragic reasons behind his dark power and their fated connection."));
         manhwaList.add(new Manhwa("The Wandering Inn (Korean adaptation)", "Pirate Labs", "Fantasy/Adventure", "Seinen", "16+", 8.5,
-                                  7.50, true, "WI25", "https://example-retailer.com/wandering-inn"));
+                 "Combining magic with machinery, a disgraced sorcerer creates powerful inventions to challenge both kings and gods."));
         manhwaList.add(new Manhwa("The Iron Mage", "Choi H.", "Action/Fantasy", "Seinen", "16+", 8.2,
-                                  7.00, false, "", "https://example-retailer.com/iron-mage"));
+                 "Combining magic with machinery, a disgraced sorcerer creates powerful inventions to challenge both kings and gods."));
         manhwaList.add(new Manhwa("The Blacksmith's Daughter", "Han Jae", "Historical/Drama", "Seinen", "16+", 7.7,
-                                  6.20, false, "", "https://example-retailer.com/blacksmith-daughter"));
+                 "Gifted with her late father’s forging skills, a humble girl crafts weapons that could change the fate of nations."));
         manhwaList.add(new Manhwa("The Forgotten Regent", "Lee G.", "Political/Drama", "Seinen", "16+", 8.1,
-                                  7.05, false, "", "https://example-retailer.com/forgotten-regent"));
+                 "Awakened after centuries of slumber, a deposed ruler fights to reclaim his throne in a world that has erased his name."));
         manhwaList.add(new Manhwa("The Silent Knight", "Yoon Tae", "Action/Fantasy", "Seinen", "16+", 8.3,
-                                  7.10, false, "", "https://example-retailer.com/silent-knight"));
+                 "A voiceless warrior protects his kingdom from the shadows, concealing a tragic past and an unspoken vow."));
         manhwaList.add(new Manhwa("Echoes of the Abyss", "Nam Soo", "Dark Fantasy/Thriller", "Seinen", "16+", 8.0,
-                          6.85, true, "ECHO25", "https://example-retailer.com/echoes-abyss"));
+                 "A young mage ventures into a forbidden abyss where memories, monsters, and forgotten gods whisper the truth of creation."));
         manhwaList.add(new Manhwa("Chains of Eternity", "Baek Jae", "Supernatural/Action", "Seinen", "16+", 8.1,
-                          6.95, false, "", "https://example-retailer.com/chains-eternity"));
+                 "In a kingdom ruled by blood and deceit, a noblewoman dances between love and betrayal to uncover the secret behind a cursed royal lineage."));
         manhwaList.add(new Manhwa("Crimson Waltz", "Kang Mi", "Romance/Mystery", "Seinen", "16+", 8.2,
-                          7.00, true, "CRIMSON25", "https://example-retailer.com/crimson-waltz"));
+                 "In a kingdom ruled by blood and deceit, a noblewoman dances between love and betrayal to uncover the secret behind a cursed royal lineage."));
     }
 
     private void initializeShoppingData() {
@@ -362,3 +362,4 @@ public class ManhwaDatabase implements Serializable {
         saveToFile();
     }
 }
+
