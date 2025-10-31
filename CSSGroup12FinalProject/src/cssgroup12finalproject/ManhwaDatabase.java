@@ -269,8 +269,6 @@ public class ManhwaDatabase implements Serializable {
                 "A reincarnated girl tries to survive and tame her three overprotective royal brothers in a twisted palace drama."));
         manhwaList.add(new Manhwa("The Duchess with an Empty Soul", "Yoon H.", "Drama", "Seinen", "16+", 8.2,
                 "A woman trapped in a loveless marriage learns to rediscover herself and find meaning beyond her hollow title."));
-        manhwaList.add(new Manhwa("A Stepmother’s Romance", "Lee Eun", "Romance", "Seinen", "16+", 7.8,
-                "A widowed stepmother’s life changes when a kind nobleman offers her a second chance at love and happiness."));
         manhwaList.add(new Manhwa("The Justice of Villainous Woman", "Han R.", "Drama", "Seinen", "16+", 8.0,
                 "Framed and executed, a noblewoman is granted another life to uncover the truth and change her cruel fate."));
         manhwaList.add(new Manhwa("The Princess Imprints a Traitor", "Park Min", "Historical/Drama", "Seinen", "16+", 8.1,
@@ -362,4 +360,5 @@ public class ManhwaDatabase implements Serializable {
         saveToFile();
     }
 }
+
 
