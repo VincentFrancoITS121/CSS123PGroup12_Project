@@ -149,9 +149,9 @@ public class ManhwaDatabase implements Serializable {
                 "A reclusive teenager struggles to survive in an apartment complex overrun by terrifying monsters born from human desires."));
         manhwaList.add(new Manhwa("Bastard", "Carnby Kim", "Thriller", "Seinen", "16+", 9.5,
                 "A high school boy lives in fear as he hides the horrifying truth that his father is a serial killer."));
-        manhwaList.add(new Manhwa("Leviathan", "Ryuho Son", "Sci-Fi", "Seinen", "16+", 8.9, 7.70,
+        manhwaList.add(new Manhwa("Leviathan", "Ryuho Son", "Sci-Fi", "Seinen", "16+", 8.9,
                 "In a flooded post-apocalyptic world, a boy and his sister fight to survive against pirates, sea monsters, and the cruelty of humanity."));
-        manhwaList.add(new Manhwa("Get Schooled", "Chongtak", "Drama", "Seinen", "16+", 9.0, 7.99,
+        manhwaList.add(new Manhwa("Get Schooled", "Chongtak", "Drama", "Seinen", "16+", 9.0,
                 "A strict government enforcer uses brutal methods to reform violent and corrupt schools across the country."));
         manhwaList.add(new Manhwa("Jungle Juice", "Hyung Eun", "Action", "Shounen", "16+", 8.7,
                 "A college student who hides his insect wings gets thrust into a hidden world of human-insect hybrids after his secret is exposed."));
@@ -237,7 +237,7 @@ public class ManhwaDatabase implements Serializable {
                 "A brilliant architect returns from death to rebuild a corrupted city and expose the truth behind his murder."));
         manhwaList.add(new Manhwa("Sword of the Emperor", "Kang Min", "Martial Arts", "Seinen", "16+", 8.8,
                 "A loyal warrior rises through blood and battle to become the blade that defends the empire and defines its destiny."));
-        manhwaList.add(new Manhwa("The Lone Necromancer", "Park Ji", "Dark Fantasy", "Seinen", "16+", 8.6
+        manhwaList.add(new Manhwa("The Lone Necromancer", "Park Ji", "Dark Fantasy", "Seinen", "16+", 8.6,
                 "A university student awakens necromantic powers in a post-apocalyptic world where the dead and living clash for survival."));
         manhwaList.add(new Manhwa("Kubera", "Currygom", "Fantasy", "Seinen", "16+", 8.7,
                 "A young girl named Kubera embarks on a perilous journey for revenge, entwined with gods, destruction, and destiny itself."));
@@ -279,7 +279,7 @@ public class ManhwaDatabase implements Serializable {
                 "Yumi’s story unfolds through the voices of her emotions, showing the funny and heartfelt complexities of everyday life and love."));
         manhwaList.add(new Manhwa("My Dear Cold-Blooded King", "Sookie", "Romance/Drama", "Seinen", "16+", 8.2,
                 "A merchant’s daughter gets entangled with a mysterious assassin king and uncovers dangerous secrets of his empire."));
-        manhwaList.add(new Manhwa("Annarasumanara", "Ha Il-Kwon", "Fantasy/Drama", "Seinen", "16+", 8.6
+        manhwaList.add(new Manhwa("Annarasumanara", "Ha Il-Kwon", "Fantasy/Drama", "Seinen", "16+", 8.6,
                 "A mysterious magician helps a struggling girl rediscover her lost sense of wonder and belief in magic."));
         manhwaList.add(new Manhwa("The Friendly Winter", "Hee Won", "Romance/Drama", "Seinen", "16+", 7.9,
                  "Two lonely souls—an ill young man and a girl with a child’s heart—form a tender bond that heals their emotional wounds."));
