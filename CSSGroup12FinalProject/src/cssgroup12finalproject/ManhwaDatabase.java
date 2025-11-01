@@ -10,6 +10,9 @@ public class ManhwaDatabase implements Serializable {
 
     private static ManhwaDatabase instance;
     private List<Manhwa> manhwaList;
+    
+    // --- UPDATED GITHUB BASE URL (Based on user's repository path) ---
+    private static final String GITHUB_BASE_URL = "https://raw.githubusercontent.com/mapuanstudent27/CSS123PGroup12_Project/main/images/"; 
 
     private ManhwaDatabase() {
         manhwaList = new ArrayList<>();
@@ -116,8 +119,6 @@ public class ManhwaDatabase implements Serializable {
     // ---- Your existing sample population methods ----
     private void initializeSampleData() {
         // (Use your existing initializers — same entries you provided)
-        // For brevity in this snippet just call a helper that adds your sample list
-        // Replace with your sample-add code or call an existing method.
         // Example:
         manhwaList.add(new Manhwa("Solo Leveling", "Chugong", "Action", "Shounen", "13+", 9.5,
                 "A weak hunter becomes the strongest through a mysterious system."));
@@ -269,6 +270,8 @@ public class ManhwaDatabase implements Serializable {
                 "A reincarnated girl tries to survive and tame her three overprotective royal brothers in a twisted palace drama."));
         manhwaList.add(new Manhwa("The Duchess with an Empty Soul", "Yoon H.", "Drama", "Seinen", "16+", 8.2,
                 "A woman trapped in a loveless marriage learns to rediscover herself and find meaning beyond her hollow title."));
+        manhwaList.add(new Manhwa("A Stepmother’s Romance", "Lee Eun", "Romance", "Seinen", "16+", 7.8,
+                "A widowed stepmother’s life changes when a kind nobleman offers her a second chance at love and happiness."));
         manhwaList.add(new Manhwa("The Justice of Villainous Woman", "Han R.", "Drama", "Seinen", "16+", 8.0,
                 "Framed and executed, a noblewoman is granted another life to uncover the truth and change her cruel fate."));
         manhwaList.add(new Manhwa("The Princess Imprints a Traitor", "Park Min", "Historical/Drama", "Seinen", "16+", 8.1,
@@ -309,7 +312,7 @@ public class ManhwaDatabase implements Serializable {
                  "A woman betrothed to a feared necromancer uncovers the tragic reasons behind his dark power and their fated connection."));
         manhwaList.add(new Manhwa("The Wandering Inn (Korean adaptation)", "Pirate Labs", "Fantasy/Adventure", "Seinen", "16+", 8.5,
                  "Combining magic with machinery, a disgraced sorcerer creates powerful inventions to challenge both kings and gods."));
-        manhwaList.add(new Manhwa("The Iron Mage", "Choi H.", "Action/Fantasy", "Seinen", "16+", 8.2,
+        manhwaList.add(new Manhwa("The Iron Mage", "Choi H.", "Action", "Seinen", "16+", 8.2,
                  "Combining magic with machinery, a disgraced sorcerer creates powerful inventions to challenge both kings and gods."));
         manhwaList.add(new Manhwa("The Blacksmith's Daughter", "Han Jae", "Historical/Drama", "Seinen", "16+", 7.7,
                  "Gifted with her late father’s forging skills, a humble girl crafts weapons that could change the fate of nations."));
@@ -323,6 +326,29 @@ public class ManhwaDatabase implements Serializable {
                  "In a kingdom ruled by blood and deceit, a noblewoman dances between love and betrayal to uncover the secret behind a cursed royal lineage."));
         manhwaList.add(new Manhwa("Crimson Waltz", "Kang Mi", "Romance/Mystery", "Seinen", "16+", 8.2,
                  "In a kingdom ruled by blood and deceit, a noblewoman dances between love and betrayal to uncover the secret behind a cursed royal lineage."));
+        
+        // --- Setting GitHub Cover Image Paths ---
+        Map<String, String> coverUrls = new HashMap<>();
+        // These files must exist in your /images/ folder
+        coverUrls.put("Solo Leveling", GITHUB_BASE_URL + "solo_leveling.jpg"); 
+        coverUrls.put("Tower of God", GITHUB_BASE_URL + "tower_of_god.jpg"); 
+        coverUrls.put("The Remarried Empress", GITHUB_BASE_URL + "remarried_empress.jpg");
+        coverUrls.put("Omniscient Reader's Viewpoint", GITHUB_BASE_URL + "omniscient_reader.jpg");
+        coverUrls.put("Eleceed", GITHUB_BASE_URL + "eleceed.jpg"); 
+        
+        for (Manhwa m : manhwaList) {
+            String title = m.getTitle();
+            if (coverUrls.containsKey(title)) {
+                m.setCoverImagePath(coverUrls.get(title));
+            } else {
+                // Generate a consistent path using the title for all other entries
+                String normalizedTitle = m.getTitle().toLowerCase()
+                                           .replaceAll("[^a-z0-9]", "_")
+                                           .replace("'", "") + ".jpg";
+                m.setCoverImagePath(GITHUB_BASE_URL + normalizedTitle);
+            }
+        }
+        // ---------------------------------------------------------------------
     }
 
     private void initializeShoppingData() {
@@ -360,5 +386,3 @@ public class ManhwaDatabase implements Serializable {
         saveToFile();
     }
 }
-
-

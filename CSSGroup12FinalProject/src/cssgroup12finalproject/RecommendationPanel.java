@@ -153,13 +153,18 @@ public class RecommendationPanel extends JPanel {
         card.setBackground(CARD_BACKGROUND); 
         card.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH, AppConfig.CARD_HEIGHT));
         
-        // Image placeholder 
-        JLabel imageLabel = new JLabel("📚", SwingConstants.CENTER);
-        imageLabel.setFont(new Font("SansSerif", Font.PLAIN, 80));
+        // Image implementation: Load and display the cover image
+        JLabel imageLabel = new JLabel();
+        ImageIcon coverIcon = MainFrame.toManhwaCoverIcon(
+            manhwa.getCoverImagePath(), 
+            AppConfig.CARD_WIDTH - 20, // width
+            200 // height
+        );
+        imageLabel.setIcon(coverIcon);
         imageLabel.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH - 20, 200));
         imageLabel.setOpaque(true);
         imageLabel.setBackground(BG_IMAGE);
-        imageLabel.setForeground(ACCENT_PRIMARY);
+        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         card.add(imageLabel, BorderLayout.NORTH);
         
         // Info Panel

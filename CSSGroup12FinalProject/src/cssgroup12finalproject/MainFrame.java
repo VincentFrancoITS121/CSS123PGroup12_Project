@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import java.util.Random; 
 
 public class MainFrame extends JFrame {
     private CardLayout cardLayout;
@@ -150,6 +155,70 @@ public class MainFrame extends JFrame {
         return String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
     }
 
+    /**
+     * Attempts to load an image from a URL, resizes it, and returns an ImageIcon.
+     * If loading fails (e.g., URL invalid, network error), it returns a solid color placeholder.
+     */
+    public static ImageIcon toManhwaCoverIcon(String imagePath, int width, int height) {
+        BufferedImage image = null;
+        String fallbackTitle = "NO IMAGE";
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                URL url = new URL(imagePath);
+                // Set the fallback title to be the manhwa title part of the URL/Path for better debugging
+                int lastSlash = imagePath.lastIndexOf('/');
+                String tempTitle = imagePath.substring(lastSlash + 1).replace(".jpg", "").replace(".png", "");
+                // Clean up title for display
+                fallbackTitle = tempTitle.replace("_", " ");
+                fallbackTitle = fallbackTitle.length() > 20 ? fallbackTitle.substring(0, 17) + "..." : fallbackTitle;
+                
+                image = ImageIO.read(url);
+            } catch (IOException e) {
+                AppLogger.error("Failed to load image from URL: " + imagePath, e);
+            }
+        }
+        
+        if (image != null) {
+            // Resize the image to the target dimensions
+            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            return new ImageIcon(scaledImage);
+        } else {
+            // Fallback: Create a solid colored box with the title
+            int colorSeed = (imagePath != null) ? imagePath.hashCode() : 0;
+            Random random = new Random(colorSeed);
+            
+            // Generate a consistent but distinct color for the placeholder
+            Color mockColor = new Color(
+                50 + random.nextInt(150), 
+                50 + random.nextInt(150), 
+                50 + random.nextInt(150)
+            );
+
+            BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); 
+            Graphics2D g2 = img.createGraphics();
+            
+            // Draw background
+            g2.setColor(mockColor);
+            g2.fillRect(0, 0, width, height);
+
+            // Draw placeholder text
+            g2.setColor(AppConfig.TEXT_LIGHT);
+            g2.setFont(new Font("SansSerif", Font.BOLD, 14));
+            
+            // Center the text
+            FontMetrics fm = g2.getFontMetrics();
+            int x = (width - fm.stringWidth(fallbackTitle)) / 2;
+            int y = (height - fm.getHeight()) / 2 + fm.getAscent();
+            g2.drawString(fallbackTitle, x, y);
+
+            g2.dispose();
+            AppLogger.info("Using placeholder for: " + (imagePath != null ? imagePath : "null path"));
+            
+            return new ImageIcon(img);
+        }
+    }
+    
     // Helper method to expose RecommendationPanel instance
     public RecommendationPanel getRecommendationPanel() {
         return recommendationPanel;

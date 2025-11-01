@@ -129,6 +129,21 @@ public class FeaturedCarouselPanel extends JPanel {
         int padding = 30;
         int x = padding;
         int y = padding;
+        
+        // Image implementation: Calculate dimensions and draw the cover image
+        int imageWidth = 250; 
+        int imageHeight = h - 2*padding;
+        int imageX = w - imageWidth - padding;
+        
+        // Get the Image object from the MainFrame mock utility
+        Image coverImage = MainFrame.toManhwaCoverIcon(
+                m.getCoverImagePath(), imageWidth, imageHeight).getImage();
+        
+        // Draw the image on the right
+        g2.drawImage(coverImage, imageX, y, imageWidth, imageHeight, null);
+        
+        // Set the text max width to stop before the image
+        int textMaxWidth = imageX - x - padding;
 
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
@@ -153,7 +168,7 @@ public class FeaturedCarouselPanel extends JPanel {
 
         int descX = x;
         int descY = y + 140;
-        int maxWidth = w - 2*padding;
+        int maxWidth = textMaxWidth; // Use the updated width
         String desc = m.getDescription();
         drawStringWrapped(g2, desc, descX, descY, maxWidth, 18);
     }

@@ -23,6 +23,7 @@ public class ShoppingHubPanel extends JPanel {
     private final Color TEXT_SUBTLE = AppConfig.TEXT_SUBTLE;
     private final Color PRICE_COLOR = AppConfig.GOLD; 
     private final Color DISCOUNT_COLOR = AppConfig.DISCOUNT_RED; 
+    private final Color BG_IMAGE = AppConfig.BG_IMAGE; 
 
     private final Font TITLE_FONT = AppConfig.TITLE_MEDIUM;
     private final Font CARD_TITLE_FONT = AppConfig.CARD_TITLE;
@@ -101,17 +102,23 @@ public class ShoppingHubPanel extends JPanel {
     
     private JPanel createProductCard(Manhwa manhwa) {
         JPanel card = new JPanel(new BorderLayout(5, 5));
-        card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 1));
+        // UI Consistency Change: Use empty border by default, similar to RecommendationPanel
+        card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         card.setBackground(CARD_BACKGROUND);
         card.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH, AppConfig.SHOP_CARD_HEIGHT));
         
-        // Image Placeholder
-        JLabel imageLabel = new JLabel("💰", SwingConstants.CENTER);
-        imageLabel.setFont(new Font("SansSerif", Font.PLAIN, 80));
+        // Image implementation: Load and display the cover image
+        JLabel imageLabel = new JLabel();
+        ImageIcon coverIcon = MainFrame.toManhwaCoverIcon(
+            manhwa.getCoverImagePath(), 
+            AppConfig.CARD_WIDTH - 20, // width
+            180 // height
+        );
+        imageLabel.setIcon(coverIcon);
         imageLabel.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH - 20, 180));
         imageLabel.setOpaque(true);
         imageLabel.setBackground(AppConfig.BG_IMAGE);
-        imageLabel.setForeground(ACCENT_PRIMARY);
+        imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         card.add(imageLabel, BorderLayout.NORTH);
         
         // Info Panel
@@ -136,20 +143,42 @@ public class ShoppingHubPanel extends JPanel {
         
         JLabel discountLabel = new JLabel();
         
-        if (manhwa.hasDiscount()) {
-            priceLabel.setText("SALE: " + priceLabel.getText());
-            priceLabel.setForeground(ACCENT_SECONDARY); // Green for sale
-            discountLabel.setText("Coupon: " + manhwa.getCouponCode());
-            discountLabel.setForeground(DISCOUNT_COLOR); // Red for urgent discount
+        if (manhwa.getPrice() > 0.0) { // Only show price section if price > 0
+            if (manhwa.hasDiscount()) {
+                priceLabel.setText("SALE: " + priceLabel.getText());
+                priceLabel.setForeground(ACCENT_SECONDARY); // Green for sale
+                discountLabel.setText("Coupon: " + manhwa.getCouponCode());
+                discountLabel.setForeground(DISCOUNT_COLOR); // Red for urgent discount
+            } else {
+                priceLabel.setForeground(PRICE_COLOR); // Gold for full price
+                discountLabel.setText("Full Price");
+                discountLabel.setForeground(TEXT_SUBTLE);
+            }
+            priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            discountLabel.setFont(new Font("SansSerif", Font.ITALIC, 11));
+            discountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            infoPanel.add(titleLabel);
+            infoPanel.add(authorLabel);
+            infoPanel.add(Box.createVerticalStrut(10));
+            infoPanel.add(priceLabel);
+            infoPanel.add(Box.createVerticalStrut(5));
+            infoPanel.add(discountLabel);
+            infoPanel.add(Box.createVerticalGlue()); 
+            
         } else {
-            priceLabel.setForeground(PRICE_COLOR); // Gold for full price
-            discountLabel.setText("Full Price");
-            discountLabel.setForeground(TEXT_SUBTLE);
+            // No Price available message
+            JLabel priceUnavailable = new JLabel("Price Unavailable");
+            priceUnavailable.setFont(AppConfig.NORMAL);
+            priceUnavailable.setForeground(TEXT_SUBTLE);
+            priceUnavailable.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            infoPanel.add(titleLabel);
+            infoPanel.add(authorLabel);
+            infoPanel.add(Box.createVerticalStrut(10));
+            infoPanel.add(priceUnavailable);
+            infoPanel.add(Box.createVerticalGlue());
         }
-        priceLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        discountLabel.setFont(new Font("SansSerif", Font.ITALIC, 11));
-        discountLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         // Buy Button
         JButton buyBtn = new JButton("Buy at Retailer"); 
@@ -186,27 +215,26 @@ public class ShoppingHubPanel extends JPanel {
             }
         });
         
-        infoPanel.add(titleLabel);
-        infoPanel.add(authorLabel);
-        infoPanel.add(Box.createVerticalStrut(10));
-        infoPanel.add(priceLabel);
-        infoPanel.add(Box.createVerticalStrut(5));
-        infoPanel.add(discountLabel);
-        infoPanel.add(Box.createVerticalGlue()); 
         infoPanel.add(buyBtn);
         infoPanel.add(Box.createVerticalStrut(10));
         
         card.add(infoPanel, BorderLayout.CENTER);
         
-        // Hover effect
+        // Hover effect consistency: Match RecommendationPanel
         card.addMouseListener(new MouseAdapter() {
+            private Color originalColor = card.getBackground();
+            
             @Override
             public void mouseEntered(MouseEvent e) {
-                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 3));
+                card.setBackground(BG_IMAGE); // Slightly darker on hover
+                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 2)); // Accent border
+                card.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
             @Override
             public void mouseExited(MouseEvent e) {
-                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 1));
+                card.setBackground(originalColor);
+                card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Back to empty border
+                card.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
         
