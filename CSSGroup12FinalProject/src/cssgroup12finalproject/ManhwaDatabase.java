@@ -209,6 +209,8 @@ public class ManhwaDatabase implements Serializable {
                 "A warlord reborn as a scholar's son seeks redemption through peace."));
         manhwaList.add(new Manhwa("The Legendary Moonlight Sculptor", "Nam Heesung", "Fantasy", "Shounen", "16+", 9.0,
                 "A broke gamer becomes a legend through creativity in VR."));
+        manhwaList.add(new Manhwa("Yumi's Cells", "Lee Dong-gun", "Romance", "Josei", 16+", 9.0,
+                "A heartwarming story that explores Yumi’s emotions through her personified brain cells as she navigates love, work, and everyday life."));
         
         AppLogger.info("Initialized " + manhwaList.size() + " manhwa entries");
         
@@ -511,6 +513,13 @@ public class ManhwaDatabase implements Serializable {
             map.get("The Legendary Moonlight Sculptor").setPurchaseUrl("https://www.sample-retailer.com/the-legendary-moonlight-sculptor");
         }
 
+        if (map.containsKey("Yumi's Cells")) {
+            map.get("Yumi's Cells").setPrice(11.49);
+            map.get("Yumi's Cells").setHasDiscount(true);
+            map.get("Yumi's Cells").setCouponCode("YC-15OFF");
+            map.get("Yumi's Cells").setPurchaseUrl("https://www.sample-retailer.com/yumis-cells");
+        }
+        
         AppLogger.info("Shopping data initialized");
         saveToFile();
     }
