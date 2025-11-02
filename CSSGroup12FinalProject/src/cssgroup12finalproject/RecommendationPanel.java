@@ -10,48 +10,45 @@ public class RecommendationPanel extends JPanel {
     private MainFrame parentFrame;
     private RecommendationEngine engine;
     private JPanel manhwaGrid;
-    private JPanel gridContainer;
+    private JScrollPane scrollPane;
     private String currentGenre = null;
     private String currentDemographic = null;
     private String currentAgeRating = null;
-    
-    // UI Constants (Matching the Dark Theme)
-    private final Color BACKGROUND_DARK = AppConfig.BG_DARK;
-    private final Color CARD_BACKGROUND = AppConfig.BG_CARD;
-    private final Color ACCENT_PRIMARY = AppConfig.ACCENT_PRIMARY;
-    private final Color TEXT_LIGHT = AppConfig.TEXT_LIGHT;
-    private final Color TEXT_SUBTLE = AppConfig.TEXT_SUBTLE;
-    private final Color GOLD = AppConfig.GOLD;
-    private final Color BG_IMAGE = AppConfig.BG_IMAGE;
-    private final Font TITLE_FONT = AppConfig.TITLE_MEDIUM;
-    private final Font CARD_TITLE_FONT = AppConfig.CARD_TITLE;
-    private final Font BUTTON_FONT = AppConfig.BUTTON;
     
     public RecommendationPanel(MainFrame parentFrame) {
         this.parentFrame = parentFrame;
         this.engine = new RecommendationEngine();
         setLayout(new BorderLayout());
-        setBackground(BACKGROUND_DARK); 
+        setBackground(AppConfig.BG_DARK);
         setupUI();
     }
     
     private void setupUI() {
-        // Header Panel
+        // Header
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(BACKGROUND_DARK);
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(AppConfig.PADDING, AppConfig.PADDING, 
-                                                             AppConfig.PADDING, AppConfig.PADDING));
+        headerPanel.setBackground(AppConfig.BG_DARK);
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
-        JButton backBtn = createHeaderButton("← Back to Home", ACCENT_PRIMARY);
-        backBtn.addActionListener(e -> parentFrame.showPanel(AppConfig.PANEL_HOME));
+        JButton backBtn = new JButton("← Back");
+        backBtn.setFont(AppConfig.BUTTON);
+        backBtn.setBackground(AppConfig.BG_DARK);
+        backBtn.setForeground(AppConfig.ACCENT_PRIMARY);
+        backBtn.setBorderPainted(false);
+        backBtn.setFocusPainted(false);
+        backBtn.addActionListener(e -> parentFrame.showPanel("HOME"));
         headerPanel.add(backBtn, BorderLayout.WEST);
         
         JLabel titleLabel = new JLabel("Browse Manhwa", SwingConstants.CENTER);
-        titleLabel.setFont(TITLE_FONT);
-        titleLabel.setForeground(TEXT_LIGHT);
+        titleLabel.setFont(AppConfig.TITLE_MEDIUM);
+        titleLabel.setForeground(AppConfig.TEXT_LIGHT);
         headerPanel.add(titleLabel, BorderLayout.CENTER);
         
-        JButton clearBtn = createHeaderButton("Clear Filters", TEXT_SUBTLE);
+        JButton clearBtn = new JButton("Clear Filters");
+        clearBtn.setFont(AppConfig.BUTTON);
+        clearBtn.setBackground(AppConfig.BG_DARK);
+        clearBtn.setForeground(AppConfig.TEXT_SUBTLE);
+        clearBtn.setBorderPainted(false);
+        clearBtn.setFocusPainted(false);
         clearBtn.addActionListener(e -> {
             currentGenre = null;
             currentDemographic = null;
@@ -62,33 +59,18 @@ public class RecommendationPanel extends JPanel {
         
         add(headerPanel, BorderLayout.NORTH);
         
-        // Manhwa Grid setup:
-        manhwaGrid = new JPanel(new GridLayout(0, AppConfig.GRID_COLUMNS, AppConfig.GRID_GAP, AppConfig.GRID_GAP));
-        manhwaGrid.setBackground(BACKGROUND_DARK);
-        manhwaGrid.setBorder(BorderFactory.createEmptyBorder(AppConfig.PADDING, AppConfig.PADDING, AppConfig.PADDING, AppConfig.PADDING));
-
-        gridContainer = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
-        gridContainer.setBackground(BACKGROUND_DARK);
-        gridContainer.add(manhwaGrid);
+        // Grid for manhwa cards
+        manhwaGrid = new JPanel();
+        manhwaGrid.setBackground(AppConfig.BG_DARK);
+        manhwaGrid.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         
-        JScrollPane scrollPane = new JScrollPane(gridContainer); 
+        scrollPane = new JScrollPane(manhwaGrid);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder()); 
-        scrollPane.getViewport().setBackground(BACKGROUND_DARK);
-        
+        scrollPane.setBorder(null);
+        scrollPane.getViewport().setBackground(AppConfig.BG_DARK);
         add(scrollPane, BorderLayout.CENTER);
         
         updateRecommendations(null, null, null);
-    }
-    
-    private JButton createHeaderButton(String text, Color foreground) {
-        JButton button = new JButton(text);
-        button.setFont(BUTTON_FONT);
-        button.setBackground(BACKGROUND_DARK);
-        button.setForeground(foreground);
-        button.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        button.setFocusPainted(false);
-        return button;
     }
     
     public void updateRecommendations(String genre, String demographic, String ageRating) {
@@ -96,95 +78,83 @@ public class RecommendationPanel extends JPanel {
         if (demographic != null) currentDemographic = demographic;
         if (ageRating != null) currentAgeRating = ageRating;
         
-        manhwaGrid.removeAll();
-        // Reset layout to Grid for recommendations
-        if (!(manhwaGrid.getLayout() instanceof GridLayout)) {
-            manhwaGrid.setLayout(new GridLayout(0, AppConfig.GRID_COLUMNS, AppConfig.GRID_GAP, AppConfig.GRID_GAP));
-        }
-
         List<Manhwa> recommendations = engine.getRecommendations(
             currentGenre, currentDemographic, currentAgeRating
         );
         
+        AppLogger.info("Updating recommendations: " + recommendations.size() + " found");
+        
+        manhwaGrid.removeAll();
+        manhwaGrid.setLayout(new GridLayout(0, 4, 20, 20));
+        
         if (recommendations.isEmpty()) {
-            // Temporarily set manhwaGrid to GridBagLayout to center the message
-            manhwaGrid.setLayout(new GridBagLayout()); 
-            JLabel noResults = new JLabel("No manhwa found matching your filters 🥺");
+            manhwaGrid.setLayout(new GridBagLayout());
+            JLabel noResults = new JLabel("No manhwa found 🥺");
             noResults.setFont(AppConfig.TITLE_MEDIUM);
-            noResults.setForeground(TEXT_SUBTLE);
+            noResults.setForeground(AppConfig.TEXT_SUBTLE);
             manhwaGrid.add(noResults);
         } else {
             for (Manhwa manhwa : recommendations) {
-                JPanel card = createManhwaCard(manhwa);
-                manhwaGrid.add(card);
+                manhwaGrid.add(createManhwaCard(manhwa));
             }
         }
         
         manhwaGrid.revalidate();
         manhwaGrid.repaint();
-        gridContainer.revalidate();
-        gridContainer.repaint();
+        scrollPane.revalidate();
+        scrollPane.getViewport().setViewPosition(new Point(0, 0));
     }
     
     public void showRandomRecommendation() {
         Manhwa random = engine.getRandomRecommendation();
         if (random != null) {
+            AppLogger.info("Showing random: " + random.getTitle());
             manhwaGrid.removeAll();
-            
-            // Set manhwaGrid to GridBagLayout for centering the single card
             manhwaGrid.setLayout(new GridBagLayout());
             
             JPanel card = createManhwaCard(random);
-            card.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH * 150/100, AppConfig.CARD_HEIGHT * 115/100)); // Larger card for focus
-            
-            manhwaGrid.add(card); 
+            card.setPreferredSize(new Dimension(350, 500));
+            manhwaGrid.add(card);
             
             manhwaGrid.revalidate();
             manhwaGrid.repaint();
-            gridContainer.revalidate();
-            gridContainer.repaint();
         }
     }
     
-    private JPanel createManhwaCard(Manhwa manhwa) {
-        JPanel card = new JPanel();
-        card.setLayout(new BorderLayout(5, 5));
+    private JPanel createManhwaCard(Manhwa m) {
+        JPanel card = new JPanel(new BorderLayout(5, 5));
         card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        card.setBackground(CARD_BACKGROUND); 
+        card.setBackground(AppConfig.BG_CARD);
         card.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH, AppConfig.CARD_HEIGHT));
         
-        // Image implementation: Load and display the cover image
+        // Cover image
         JLabel imageLabel = new JLabel();
-        ImageIcon coverIcon = MainFrame.toManhwaCoverIcon(
-            manhwa.getCoverImagePath(), 
-            AppConfig.CARD_WIDTH - 20, // width
-            200 // height
-        );
-        imageLabel.setIcon(coverIcon);
-        imageLabel.setPreferredSize(new Dimension(AppConfig.CARD_WIDTH - 20, 200));
+        ImageIcon icon = MainFrame.toManhwaCoverIcon(m.getCoverImagePath(), 230, 200);
+        imageLabel.setIcon(icon);
+        imageLabel.setPreferredSize(new Dimension(230, 200));
         imageLabel.setOpaque(true);
-        imageLabel.setBackground(BG_IMAGE);
+        imageLabel.setBackground(AppConfig.BG_IMAGE);
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         card.add(imageLabel, BorderLayout.NORTH);
         
-        // Info Panel
+        // Info panel
         JPanel infoPanel = new JPanel();
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
-        infoPanel.setBackground(CARD_BACKGROUND);
+        infoPanel.setBackground(AppConfig.BG_CARD);
         
-        JLabel titleLabel = new JLabel(manhwa.getTitle());
-        titleLabel.setFont(CARD_TITLE_FONT);
-        titleLabel.setForeground(TEXT_LIGHT);
+        JLabel titleLabel = new JLabel("<html><center>" + m.getTitle() + "</center></html>");
+        titleLabel.setFont(AppConfig.CARD_TITLE);
+        titleLabel.setForeground(AppConfig.TEXT_LIGHT);
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        JLabel genreLabel = new JLabel(manhwa.getGenre() + " | " + manhwa.getDemographic());
+        JLabel genreLabel = new JLabel(m.getGenre() + " | " + m.getDemographic());
         genreLabel.setFont(AppConfig.SMALL);
-        genreLabel.setForeground(TEXT_SUBTLE);
+        genreLabel.setForeground(AppConfig.TEXT_SUBTLE);
         genreLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        JLabel ratingLabel = new JLabel("★ " + manhwa.getRating() + "/10");
+        JLabel ratingLabel = new JLabel("★ " + m.getRating() + "/10");
         ratingLabel.setFont(AppConfig.NORMAL);
-        ratingLabel.setForeground(GOLD); 
+        ratingLabel.setForeground(AppConfig.GOLD);
         ratingLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         
         infoPanel.add(Box.createVerticalStrut(10));
@@ -196,50 +166,41 @@ public class RecommendationPanel extends JPanel {
         
         card.add(infoPanel, BorderLayout.CENTER);
         
-        // Mouse Event Implementation (Hover Effect)
+        // Hover effects
         card.addMouseListener(new MouseAdapter() {
-            private Color originalColor = card.getBackground();
-            
             @Override
             public void mouseEntered(MouseEvent e) {
-                card.setBackground(BG_IMAGE); // Slightly darker on hover
-                card.setBorder(BorderFactory.createLineBorder(ACCENT_PRIMARY, 2));
-                card.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                
-                String tooltip = "<html><div style='width: 300px; padding: 10px; color: black; background: #e0e0e0;'>" +
-                                "<b>" + manhwa.getTitle() + "</b><br><br>" +
-                                "<b>Author:</b> " + manhwa.getAuthor() + "<br>" +
-                                "<b>Rating:</b> <span style='color: " + MainFrame.toHtmlColor(GOLD) + ";'>★ " + manhwa.getRating() + "/10</span><br>" + // USE HELPER
-                                "<b>Age Rating:</b> " + manhwa.getAgeRating() + "<br><br>" +
-                                "<i>" + manhwa.getDescription() + "</i>" +
-                                "</div></html>";
-                card.setToolTipText(tooltip);
+                card.setBackground(AppConfig.BG_IMAGE);
+                card.setBorder(BorderFactory.createLineBorder(AppConfig.ACCENT_PRIMARY, 2));
+                card.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
             
             @Override
             public void mouseExited(MouseEvent e) {
-                card.setBackground(originalColor);
+                card.setBackground(AppConfig.BG_CARD);
                 card.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-                card.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                card.setCursor(Cursor.getDefaultCursor());
             }
             
             @Override
             public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(card, 
-                    "<html><div style='width: 300px; font-family: SansSerif;'>" + 
-                    "<h3 style='color: " + MainFrame.toHtmlColor(ACCENT_PRIMARY) + ";'>" + manhwa.getTitle() + "</h3>" + // USE HELPER
-                    "<b>Author:</b> " + manhwa.getAuthor() + "<br>" +
-                    "<b>Description:</b> <i>" + manhwa.getDescription() + "</i><br><br>" +
-                    "<b>Rating:</b> <span style='color: " + MainFrame.toHtmlColor(GOLD) + ";'>★ " + manhwa.getRating() + "/10</span><br>" + // USE HELPER
-                    "<b>Genre:</b> " + manhwa.getGenre() + "<br>" +
-                    "<b>Demographic:</b> " + manhwa.getDemographic() + 
-                    "</div></html>",
-                    "Manhwa Details",
-                    JOptionPane.PLAIN_MESSAGE 
-                );
+                showManhwaDetails(m);
             }
         });
         
         return card;
+    }
+    
+    private void showManhwaDetails(Manhwa m) {
+        String html = "<html><body style='width: 350px; font-family: SansSerif;'>" +
+                "<h2 style='color: " + MainFrame.toHtmlColor(AppConfig.ACCENT_PRIMARY) + ";'>" + m.getTitle() + "</h2>" +
+                "<p><b>Author:</b> " + m.getAuthor() + "</p>" +
+                "<p><b>Genre:</b> " + m.getGenre() + " | <b>Demographic:</b> " + m.getDemographic() + "</p>" +
+                "<p><b>Age Rating:</b> " + m.getAgeRating() + "</p>" +
+                "<p><b>Rating:</b> <span style='color: " + MainFrame.toHtmlColor(AppConfig.GOLD) + ";'>★ " + m.getRating() + "/10</span></p>" +
+                "<p><i>" + m.getDescription() + "</i></p>" +
+                "</body></html>";
+        
+        JOptionPane.showMessageDialog(this, html, "Manhwa Details", JOptionPane.PLAIN_MESSAGE);
     }
 }
