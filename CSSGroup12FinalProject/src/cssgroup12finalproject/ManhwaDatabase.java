@@ -252,8 +252,267 @@ public class ManhwaDatabase implements Serializable {
             map.get("Eleceed").setCouponCode("ELECEED-FLASH");
             map.get("Eleceed").setPurchaseUrl("https://www.sample-retailer.com/eleceed");
         }
+
+        if (map.containsKey("True Beauty")) {
+            map.get("True Beauty").setPrice(10.99);
+            map.get("True Beauty").setHasDiscount(true);
+            map.get("True Beauty").setCouponCode("TB-15OFF");
+            map.get("True Beauty").setPurchaseUrl("https://www.sample-retailer.com/true-beauty");
+        }
+
+        if (map.containsKey("Weak Hero")) {
+            map.get("Weak Hero").setPrice(11.99);
+            map.get("Weak Hero").setPurchaseUrl("https://www.sample-retailer.com/weak-hero");
+        }
+
+        if (map.containsKey("Villains Are Destined to Die")) {
+            map.get("Villains Are Destined to Die").setPrice(12.49);
+            map.get("Villains Are Destined to Die").setHasDiscount(true);
+            map.get("Villains Are Destined to Die").setCouponCode("VDD-10OFF");
+            map.get("Villains Are Destined to Die").setPurchaseUrl("https://www.sample-retailer.com/villains-are-destined-to-die");
+        }
+
+        if (map.containsKey("Lookism")) {
+            map.get("Lookism").setPrice(9.99);
+            map.get("Lookism").setPurchaseUrl("https://www.sample-retailer.com/lookism");
+        }
+
+        if (map.containsKey("Unordinary")) {
+            map.get("Unordinary").setPrice(10.49);
+            map.get("Unordinary").setHasDiscount(true);
+            map.get("Unordinary").setCouponCode("UNORD-5OFF");
+            map.get("Unordinary").setPurchaseUrl("https://www.sample-retailer.com/unordinary");
+        }
+
+        if (map.containsKey("The Beginning After the End")) {
+            map.get("The Beginning After the End").setPrice(13.99);
+            map.get("The Beginning After the End").setPurchaseUrl("https://www.sample-retailer.com/the-beginning-after-the-end");
+        }
+
+        if (map.containsKey("Noblesse")) {
+            map.get("Noblesse").setPrice(11.50);
+            map.get("Noblesse").setPurchaseUrl("https://www.sample-retailer.com/noblesse");
+        }
+
+        if (map.containsKey("God of High School")) {
+            map.get("God of High School").setPrice(12.75);
+            map.get("God of High School").setHasDiscount(true);
+            map.get("God of High School").setCouponCode("GOHS-10OFF");
+            map.get("God of High School").setPurchaseUrl("https://www.sample-retailer.com/god-of-high-school");
+        }
+
+        if (map.containsKey("Sweet Home")) {
+            map.get("Sweet Home").setPrice(11.99);
+            map.get("Sweet Home").setPurchaseUrl("https://www.sample-retailer.com/sweet-home");
+        }
+
+        if (map.containsKey("Bastard")) {
+            map.get("Bastard").setPrice(10.99);
+            map.get("Bastard").setHasDiscount(true);
+            map.get("Bastard").setCouponCode("BST-20OFF");
+            map.get("Bastard").setPurchaseUrl("https://www.sample-retailer.com/bastard");
+        }
+
+        if (map.containsKey("Leviathan")) {
+            map.get("Leviathan").setPrice(12.25);
+            map.get("Leviathan").setPurchaseUrl("https://www.sample-retailer.com/leviathan");
+        }
+
+        if (map.containsKey("Get Schooled")) {
+            map.get("Get Schooled").setPrice(10.75);
+            map.get("Get Schooled").setPurchaseUrl("https://www.sample-retailer.com/get-schooled");
+        }
+
+        if (map.containsKey("Jungle Juice")) {
+            map.get("Jungle Juice").setPrice(11.25);
+            map.get("Jungle Juice").setHasDiscount(true);
+            map.get("Jungle Juice").setCouponCode("JJ-10OFF");
+            map.get("Jungle Juice").setPurchaseUrl("https://www.sample-retailer.com/jungle-juice");
+        }
+
+        if (map.containsKey("DICE")) {
+            map.get("DICE").setPrice(9.49);
+            map.get("DICE").setPurchaseUrl("https://www.sample-retailer.com/dice");
+        }
+
+        if (map.containsKey("Hardcore Leveling Warrior")) {
+            map.get("Hardcore Leveling Warrior").setPrice(12.99);
+            map.get("Hardcore Leveling Warrior").setPurchaseUrl("https://www.sample-retailer.com/hardcore-leveling-warrior");
+        }
+
+        if (map.containsKey("Wind Breaker")) {
+            map.get("Wind Breaker").setPrice(11.49);
+            map.get("Wind Breaker").setHasDiscount(true);
+            map.get("Wind Breaker").setCouponCode("WB-15OFF");
+            map.get("Wind Breaker").setPurchaseUrl("https://www.sample-retailer.com/wind-breaker");
+        }
+
+        if (map.containsKey("Viral Hit")) {
+            map.get("Viral Hit").setPrice(10.25);
+            map.get("Viral Hit").setPurchaseUrl("https://www.sample-retailer.com/viral-hit");
+        }
+
+        if (map.containsKey("Questism")) {
+            map.get("Questism").setPrice(10.75);
+            map.get("Questism").setHasDiscount(true);
+            map.get("Questism").setCouponCode("QSM-10OFF");
+            map.get("Questism").setPurchaseUrl("https://www.sample-retailer.com/questism");
+        }
+
+        if (map.containsKey("Nano Machine")) {
+            map.get("Nano Machine").setPrice(12.50);
+            map.get("Nano Machine").setPurchaseUrl("https://www.sample-retailer.com/nano-machine");
+        }
+
+        if (map.containsKey("Return of the Mount Hua Sect")) {
+            map.get("Return of the Mount Hua Sect").setPrice(13.25);
+            map.get("Return of the Mount Hua Sect").setHasDiscount(true);
+            map.get("Return of the Mount Hua Sect").setCouponCode("RMHS-10OFF");
+            map.get("Return of the Mount Hua Sect").setPurchaseUrl("https://www.sample-retailer.com/return-of-the-mount-hua-sect");
+        }
+
+        if (map.containsKey("The Breaker")) {
+            map.get("The Breaker").setPrice(11.99);
+            map.get("The Breaker").setHasDiscount(true);
+            map.get("The Breaker").setCouponCode("BRK-10OFF");
+            map.get("The Breaker").setPurchaseUrl("https://www.sample-retailer.com/the-breaker");
+        }
+
+        if (map.containsKey("Mercenary Enrollment")) {
+            map.get("Mercenary Enrollment").setPrice(12.49);
+            map.get("Mercenary Enrollment").setPurchaseUrl("https://www.sample-retailer.com/mercenary-enrollment");
+        }
+
+        if (map.containsKey("Second Life Ranker")) {
+            map.get("Second Life Ranker").setPrice(13.25);
+            map.get("Second Life Ranker").setHasDiscount(true);
+            map.get("Second Life Ranker").setCouponCode("SLR-15OFF");
+            map.get("Second Life Ranker").setPurchaseUrl("https://www.sample-retailer.com/second-life-ranker");
+        }
+
+        if (map.containsKey("Dungeon Reset")) {
+            map.get("Dungeon Reset").setPrice(10.99);
+            map.get("Dungeon Reset").setPurchaseUrl("https://www.sample-retailer.com/dungeon-reset");
+        }
+
+        if (map.containsKey("A Returner's Magic Should Be Special")) {
+            map.get("A Returner's Magic Should Be Special").setPrice(12.75);
+            map.get("A Returner's Magic Should Be Special").setPurchaseUrl("https://www.sample-retailer.com/a-returners-magic");
+        }
+
+        if (map.containsKey("Trash of the Count's Family")) {
+            map.get("Trash of the Count's Family").setPrice(11.50);
+            map.get("Trash of the Count's Family").setHasDiscount(true);
+            map.get("Trash of the Count's Family").setCouponCode("TCF-10OFF");
+            map.get("Trash of the Count's Family").setPurchaseUrl("https://www.sample-retailer.com/trash-of-the-counts-family");
+        }
+
+        if (map.containsKey("Player Who Can't Level Up")) {
+            map.get("Player Who Can't Level Up").setPrice(11.25);
+            map.get("Player Who Can't Level Up").setPurchaseUrl("https://www.sample-retailer.com/player-who-cant-level-up");
+        }
+
+        if (map.containsKey("Reaper of the Drifting Moon")) {
+            map.get("Reaper of the Drifting Moon").setPrice(13.75);
+            map.get("Reaper of the Drifting Moon").setHasDiscount(true);
+            map.get("Reaper of the Drifting Moon").setCouponCode("RDM-20OFF");
+            map.get("Reaper of the Drifting Moon").setPurchaseUrl("https://www.sample-retailer.com/reaper-of-the-drifting-moon");
+        }
+
+        if (map.containsKey("Infinite Level Up in Murim")) {
+            map.get("Infinite Level Up in Murim").setPrice(12.50);
+            map.get("Infinite Level Up in Murim").setPurchaseUrl("https://www.sample-retailer.com/infinite-level-up-in-murim");
+        }
+
+        if (map.containsKey("The Legend of the Northern Blade")) {
+            map.get("The Legend of the Northern Blade").setPrice(12.99);
+            map.get("The Legend of the Northern Blade").setPurchaseUrl("https://www.sample-retailer.com/the-legend-of-the-northern-blade");
+        }
+
+        if (map.containsKey("SSS-Class Revival Hunter")) {
+            map.get("SSS-Class Revival Hunter").setPrice(11.75);
+            map.get("SSS-Class Revival Hunter").setHasDiscount(true);
+            map.get("SSS-Class Revival Hunter").setCouponCode("SSS-15OFF");
+            map.get("SSS-Class Revival Hunter").setPurchaseUrl("https://www.sample-retailer.com/sss-class-revival-hunter");
+        }
+
+        if (map.containsKey("Survival Story of a Sword King")) {
+            map.get("Survival Story of a Sword King").setPrice(12.25);
+            map.get("Survival Story of a Sword King").setPurchaseUrl("https://www.sample-retailer.com/survival-story-of-a-sword-king");
+        }
+
+        if (map.containsKey("Tomb Raider King")) {
+            map.get("Tomb Raider King").setPrice(11.49);
+            map.get("Tomb Raider King").setHasDiscount(true);
+            map.get("Tomb Raider King").setCouponCode("TRK-10OFF");
+            map.get("Tomb Raider King").setPurchaseUrl("https://www.sample-retailer.com/tomb-raider-king");
+        }
+
+        if (map.containsKey("Max Level Returner")) {
+            map.get("Max Level Returner").setPrice(10.99);
+            map.get("Max Level Returner").setPurchaseUrl("https://www.sample-retailer.com/max-level-returner");
+        }
+
+        if (map.containsKey("Overgeared")) {
+            map.get("Overgeared").setPrice(13.50);
+            map.get("Overgeared").setPurchaseUrl("https://www.sample-retailer.com/overgeared");
+        }
+
+        if (map.containsKey("The Live")) {
+            map.get("The Live").setPrice(11.25);
+            map.get("The Live").setHasDiscount(true);
+            map.get("The Live").setCouponCode("LIVE-10OFF");
+            map.get("The Live").setPurchaseUrl("https://www.sample-retailer.com/the-live");
+        }
+
+        if (map.containsKey("Leveling With the Gods")) {
+            map.get("Leveling With the Gods").setPrice(12.99);
+            map.get("Leveling With the Gods").setPurchaseUrl("https://www.sample-retailer.com/leveling-with-the-gods");
+        }
+
+        if (map.containsKey("The Gamer")) {
+            map.get("The Gamer").setPrice(10.75);
+            map.get("The Gamer").setPurchaseUrl("https://www.sample-retailer.com/the-gamer");
+        }
+
+        if (map.containsKey("Gosu")) {
+            map.get("Gosu").setPrice(11.99);
+            map.get("Gosu").setHasDiscount(true);
+            map.get("Gosu").setCouponCode("GOSU-15OFF");
+            map.get("Gosu").setPurchaseUrl("https://www.sample-retailer.com/gosu");
+        }
+
+        if (map.containsKey("Black Haze")) {
+            map.get("Black Haze").setPrice(10.99);
+            map.get("Black Haze").setPurchaseUrl("https://www.sample-retailer.com/black-haze");
+        }
+
+        if (map.containsKey("The God of Blackfield")) {
+            map.get("The God of Blackfield").setPrice(12.25);
+            map.get("The God of Blackfield").setHasDiscount(true);
+            map.get("The God of Blackfield").setCouponCode("GOB-10OFF");
+            map.get("The God of Blackfield").setPurchaseUrl("https://www.sample-retailer.com/the-god-of-blackfield");
+        }
+
+        if (map.containsKey("The Boxer")) {
+            map.get("The Boxer").setPrice(11.50);
+            map.get("The Boxer").setPurchaseUrl("https://www.sample-retailer.com/the-boxer");
+        }
         
+        if (map.containsKey("The Scholar's Reincarnation")) {
+            map.get("The Scholar's Reincarnation").setPrice(11.99);
+            map.get("The Scholar's Reincarnation").setHasDiscount(true);
+            map.get("The Scholar's Reincarnation").setCouponCode("TSR-15OFF");
+            map.get("The Scholar's Reincarnation").setPurchaseUrl("https://www.sample-retailer.com/the-scholars-reincarnation");
+        }
+
+        if (map.containsKey("The Legendary Moonlight Sculptor")) {
+            map.get("The Legendary Moonlight Sculptor").setPrice(13.25);
+            map.get("The Legendary Moonlight Sculptor").setPurchaseUrl("https://www.sample-retailer.com/the-legendary-moonlight-sculptor");
+        }
+
         AppLogger.info("Shopping data initialized");
         saveToFile();
     }
+
 }
