@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RecommendationPanel extends JPanel {
     private MainFrame parentFrame;
@@ -14,6 +15,8 @@ public class RecommendationPanel extends JPanel {
     private String currentGenre = null;
     private String currentDemographic = null;
     private String currentAgeRating = null;
+    private JTextField searchField;
+    private JLabel filterLabel;
     
     public RecommendationPanel(MainFrame parentFrame) {
         this.parentFrame = parentFrame;
@@ -23,55 +26,140 @@ public class RecommendationPanel extends JPanel {
         setupUI();
     }
     
-    private void setupUI() {
-        // Header
-        JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(AppConfig.BG_DARK);
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        JButton backBtn = new JButton("← Back");
-        backBtn.setFont(AppConfig.BUTTON);
-        backBtn.setBackground(AppConfig.BG_DARK);
-        backBtn.setForeground(AppConfig.ACCENT_PRIMARY);
-        backBtn.setBorderPainted(false);
-        backBtn.setFocusPainted(false);
-        backBtn.addActionListener(e -> parentFrame.showPanel("HOME"));
-        headerPanel.add(backBtn, BorderLayout.WEST);
-        
-        JLabel titleLabel = new JLabel("Browse Manhwa", SwingConstants.CENTER);
-        titleLabel.setFont(AppConfig.TITLE_MEDIUM);
-        titleLabel.setForeground(AppConfig.TEXT_LIGHT);
-        headerPanel.add(titleLabel, BorderLayout.CENTER);
-        
-        JButton clearBtn = new JButton("Clear Filters");
-        clearBtn.setFont(AppConfig.BUTTON);
-        clearBtn.setBackground(AppConfig.BG_DARK);
-        clearBtn.setForeground(AppConfig.TEXT_SUBTLE);
-        clearBtn.setBorderPainted(false);
-        clearBtn.setFocusPainted(false);
-        clearBtn.addActionListener(e -> {
-            currentGenre = null;
-            currentDemographic = null;
-            currentAgeRating = null;
-            updateRecommendations(null, null, null);
-        });
-        headerPanel.add(clearBtn, BorderLayout.EAST);
-        
-        add(headerPanel, BorderLayout.NORTH);
-        
-        // Grid for manhwa cards
-        manhwaGrid = new JPanel();
-        manhwaGrid.setBackground(AppConfig.BG_DARK);
-        manhwaGrid.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        scrollPane = new JScrollPane(manhwaGrid);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setBorder(null);
-        scrollPane.getViewport().setBackground(AppConfig.BG_DARK);
-        add(scrollPane, BorderLayout.CENTER);
-        
+private void setupUI() {
+    // Header
+    JPanel headerPanel = new JPanel(new BorderLayout());
+    headerPanel.setBackground(AppConfig.BG_DARK);
+    headerPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    
+    // Back button (West)
+    JButton backBtn = new JButton("← Back");
+    backBtn.setFont(AppConfig.BUTTON);
+    backBtn.setBackground(AppConfig.BG_DARK);
+    backBtn.setForeground(AppConfig.ACCENT_PRIMARY);
+    backBtn.setBorderPainted(false);
+    backBtn.setFocusPainted(false);
+    backBtn.addActionListener(e -> parentFrame.showPanel("HOME"));
+    headerPanel.add(backBtn, BorderLayout.WEST);
+    
+    // Center panel with title and search
+    JPanel centerPanel = new JPanel();
+    centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.Y_AXIS));
+    centerPanel.setBackground(AppConfig.BG_DARK);
+    
+    JLabel titleLabel = new JLabel("Browse Manhwa", SwingConstants.CENTER);
+    titleLabel.setFont(AppConfig.TITLE_MEDIUM);
+    titleLabel.setForeground(AppConfig.TEXT_LIGHT);
+    titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+    // Search bar
+    JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+    searchPanel.setBackground(AppConfig.BG_DARK);
+    
+    searchField = new JTextField(20);
+    searchField.setFont(AppConfig.NORMAL);
+    searchField.setBackground(AppConfig.BG_CARD);
+    searchField.setForeground(AppConfig.TEXT_LIGHT);
+    searchField.setCaretColor(AppConfig.TEXT_LIGHT);
+    
+    JButton searchBtn = new JButton("🔍 Search");
+    searchBtn.setFont(AppConfig.BUTTON);
+    searchBtn.setBackground(AppConfig.ACCENT_PRIMARY);
+    searchBtn.setForeground(Color.BLACK);
+    searchBtn.setFocusPainted(false);
+    searchBtn.addActionListener(e -> performSearch());
+    
+    searchField.addActionListener(e -> performSearch());
+    
+    JLabel searchLabel = new JLabel("Search:");
+    searchLabel.setForeground(AppConfig.TEXT_SUBTLE);
+    
+    searchPanel.add(searchLabel);
+    searchPanel.add(searchField);
+    searchPanel.add(searchBtn);
+    
+    // Filter indicator label
+    filterLabel = new JLabel("Showing: All Manhwa");
+    filterLabel.setFont(AppConfig.SMALL);
+    filterLabel.setForeground(AppConfig.TEXT_SUBTLE);
+    filterLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    
+    centerPanel.add(titleLabel);
+    centerPanel.add(Box.createVerticalStrut(10));
+    centerPanel.add(searchPanel);
+    centerPanel.add(Box.createVerticalStrut(5));
+    centerPanel.add(filterLabel);
+    
+    headerPanel.add(centerPanel, BorderLayout.CENTER);
+    
+    // Clear filters button (East)
+    JButton clearBtn = new JButton("Clear Filters");
+    clearBtn.setFont(AppConfig.BUTTON);
+    clearBtn.setBackground(AppConfig.BG_DARK);
+    clearBtn.setForeground(AppConfig.TEXT_SUBTLE);
+    clearBtn.setBorderPainted(false);
+    clearBtn.setFocusPainted(false);
+    clearBtn.addActionListener(e -> {
+        currentGenre = null;
+        currentDemographic = null;
+        currentAgeRating = null;
+        searchField.setText("");
         updateRecommendations(null, null, null);
+    });
+    headerPanel.add(clearBtn, BorderLayout.EAST);
+    
+    add(headerPanel, BorderLayout.NORTH);
+    
+    // THIS WAS THE MISSING PART:
+    // Grid for manhwa cards
+    manhwaGrid = new JPanel();
+    manhwaGrid.setBackground(AppConfig.BG_DARK);
+    manhwaGrid.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    
+    scrollPane = new JScrollPane(manhwaGrid);
+    scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+    scrollPane.setBorder(null);
+    scrollPane.getViewport().setBackground(AppConfig.BG_DARK);
+    add(scrollPane, BorderLayout.CENTER);
+    
+    updateRecommendations(null, null, null);
+}
+
+    private void performSearch() {
+    String query = searchField.getText().trim();
+    if (query.isEmpty()) {
+        updateRecommendations(currentGenre, currentDemographic, currentAgeRating);
+        return;
     }
+    
+    List<Manhwa> results = engine.getRecommendations(
+        currentGenre, currentDemographic, currentAgeRating
+    ).stream()
+     .filter(m -> m.getTitle().toLowerCase().contains(query.toLowerCase()))
+     .collect(Collectors.toList());
+    
+    AppLogger.info("Search for '" + query + "': " + results.size() + " results");
+    
+    manhwaGrid.removeAll();
+    manhwaGrid.setLayout(new GridLayout(0, 4, 20, 20));
+    
+    if (results.isEmpty()) {
+        manhwaGrid.setLayout(new GridBagLayout());
+        JLabel noResults = new JLabel("No results for '" + query + "' 🥺");
+        noResults.setFont(AppConfig.TITLE_MEDIUM);
+        noResults.setForeground(AppConfig.TEXT_SUBTLE);
+        manhwaGrid.add(noResults);
+    } else {
+        for (Manhwa manhwa : results) {
+            manhwaGrid.add(createManhwaCard(manhwa));
+        }
+    }
+    
+    filterLabel.setText("Search: \"" + query + "\" | Found: " + results.size());
+    manhwaGrid.revalidate();
+    manhwaGrid.repaint();
+    scrollPane.revalidate();
+}
     
     public void updateRecommendations(String genre, String demographic, String ageRating) {
         if (genre != null) currentGenre = genre;
@@ -98,7 +186,14 @@ public class RecommendationPanel extends JPanel {
                 manhwaGrid.add(createManhwaCard(manhwa));
             }
         }
-        
+        // Update filter label
+String filterText = "Showing: ";
+if (currentGenre != null) filterText += currentGenre + " | ";
+if (currentDemographic != null) filterText += currentDemographic + " | ";
+if (currentAgeRating != null) filterText += currentAgeRating + " | ";
+filterText += recommendations.size() + " manhwa";
+filterLabel.setText(filterText);
+
         manhwaGrid.revalidate();
         manhwaGrid.repaint();
         scrollPane.revalidate();
