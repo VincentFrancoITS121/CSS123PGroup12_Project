@@ -209,7 +209,7 @@ public class ManhwaDatabase implements Serializable {
                 "A warlord reborn as a scholar's son seeks redemption through peace."));
         manhwaList.add(new Manhwa("The Legendary Moonlight Sculptor", "Nam Heesung", "Fantasy", "Shounen", "16+", 9.0,
                 "A broke gamer becomes a legend through creativity in VR."));
-        manhwaList.add(new Manhwa("Yumi's Cells", "Lee Dong-gun", "Romance", "Josei", 16+", 9.0,
+        manhwaList.add(new Manhwa("Yumi's Cells", "Lee Dong-gun", "Romance", "Josei", "16+", 9.0,
                 "A heartwarming story that explores Yumi’s emotions through her personified brain cells as she navigates love, work, and everyday life."));
         
         AppLogger.info("Initialized " + manhwaList.size() + " manhwa entries");
